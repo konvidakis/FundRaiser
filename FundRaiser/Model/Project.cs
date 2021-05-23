@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Model
 {
-    class Project
+    public class Project
     {
         public int ProjectId { get; set; }
         public Category Category { get; set; }
