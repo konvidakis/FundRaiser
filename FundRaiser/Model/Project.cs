@@ -18,7 +18,9 @@ namespace FundRaiser.Model
         public decimal AmountPledged { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
         public User User { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public List<Reward> Rewards { get; set; }
+        public List<ProjectPost> ProjectPosts { get; set; }
     }
 }

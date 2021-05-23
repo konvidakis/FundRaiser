@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Model
 {
-    class Transaction
-
-    {
-        public class Transaction
+    public class Transaction
         {
-            public int RewardId { get; set; }
-            public int UserId { get; set; }
-            public int ProjectId { get; set; }
-
+            public int TransactionId { get; set; }
             public decimal Amount { get; set; }
             public DateTime TimeStamp { get; set; }
-
+            public Reward Reward { get; set; }
+            public User User { get; set; }
+            public Project Project { get; set; }
 
         }
-    }
 }
-}
+
+

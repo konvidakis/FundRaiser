@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Model
 {
-    class Reward
+    public class Reward
     {
         public int RewardId { get; set; }
         public string Title { get; set; }

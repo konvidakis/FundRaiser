@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Model
 {
-    public enum Category
+    public enum PostType
     {
-        //.... Add Categories
-        Katigoria,
-        Katigoria2
+        Photo,
+        Video,
+        PhotoAndVideo,
+        Post
     }
 }
