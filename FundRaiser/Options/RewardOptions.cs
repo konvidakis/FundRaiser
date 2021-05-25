@@ -13,7 +13,8 @@ namespace FundRaiser.Options
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal AmountRequired { get; set; }
-        public Project Project { get; set; }
+        public int ProjectId { get; set; }
+        
         // public List<Transaction> Transactions { get; set; }
     }
 }

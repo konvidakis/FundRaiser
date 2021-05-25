@@ -14,6 +14,6 @@ namespace FundRaiser.Options
         public string Photo { get; set; }
         public PostType Type { get; set; }
         public DateTime TimeStamps { get; set; }
-        public Project Project { get; set; }
+        public int ProjectId { get; set; }
     }
 }

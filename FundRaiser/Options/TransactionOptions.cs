@@ -14,7 +14,7 @@ namespace FundRaiser.Options
         public DateTime TimeStamp { get; set; }
         public Reward Reward { get; set; }
         public User User { get; set; }
-        public Project Project { get; set; }
+        public int ProjectId { get; set; }
 
     }
 
