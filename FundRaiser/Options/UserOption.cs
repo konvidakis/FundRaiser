@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Options
 {
-    public class UserOptions
+    public class UserOption
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

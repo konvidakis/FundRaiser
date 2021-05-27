@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Options
 {
-    public class RewardOptions
+    public class RewardOption
     {
         public int RewardId { get; set; }
         public string Title { get; set; }
