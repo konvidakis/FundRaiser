@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Database;
+using FundRaiser.Model;
 
 namespace FundRaiser.Service.Implementations
 {
-    public class ProjectService : IProjectPostService
+    public class ProjectService : IProjectServices
     {
         private readonly FundRaiserDbContext _db;
 
@@ -16,24 +17,65 @@ namespace FundRaiser.Service.Implementations
         {
             _db = db;
         }
-        public ProjectPostOption CreateProjectPost(ProjectPostOption projectPostOptions)
+
+        public ProjectOption CreateProject(ProjectOption projectOptions)
         {
-            throw new NotImplementedException();
+            if (projectOptions == null)
+            {
+                return null;
+            }
+
+            Project project = projectOptions.GetProject();
+            _db.Projects.Add(project);
+            _db.SaveChanges();
+            return new ProjectOption(project);
+        }
+    
+
+        public bool DeleteProject(int projectId)
+        {
+            Project dbProject = _db.Projects.Find(projectId);
+            if (dbProject == null)
+            {
+                return false;
+            }
+
+            _db.Projects.Remove(dbProject);
+            return true;
         }
 
-        public bool DeleteProjectPost(int projectPostId)
+        public ProjectOption GetProjectById(int projectId)
         {
-            throw new NotImplementedException();
+            Project project = _db.Projects.Find(projectId);
+            if (project == null)
+            {
+                return null;
+            }
+
+            return new ProjectOption(project);
         }
 
-        public ProjectPostOption GetProjectPostById(int projectPostId)
+        public ProjectOption UpdateProject(int projectId, ProjectOption projectOptions)
         {
-            throw new NotImplementedException();
-        }
+            Project dbProject = _db.Projects.Find(projectId);
+            if (dbProject == null)
+            {
+                return null;
+            }
+            //to id ginetai na allazei????
+            dbProject.ProjectId = projectOptions.ProjectId;
+            dbProject.Category = projectOptions.Category;
+            dbProject.Title = projectOptions.Title;
+            dbProject.Logo = projectOptions.Logo;
+            dbProject.TimeStamp = projectOptions.TimeStamp;
+            dbProject.Description = projectOptions.Description;
+            dbProject.AmountPledged = projectOptions.AmountPledged;
+            dbProject.SetGoal = projectOptions.SetGoal;
+            dbProject.StartDate = projectOptions.StartDate;
+            dbProject.EndDate = projectOptions.EndDate;
+            _db.SaveChanges();
 
-        public ProjectPostOption UpdateProjectPost(int projectPostId, ProjectPostOption projectPostOptions)
-        {
-            throw new NotImplementedException();
+            return new ProjectOption(dbProject);
         }
     }
 }

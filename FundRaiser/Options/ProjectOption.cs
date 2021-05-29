@@ -23,5 +23,39 @@ namespace FundRaiser.Options
         //public List<Transaction> Transactions { get; set; }
         //public List<Reward> Rewards { get; set; }
         //public List<ProjectPost> ProjectPosts { get; set; }
+
+        public ProjectOption(Project project)
+        {
+            if (project != null)
+            {
+                ProjectId = project.ProjectId;
+                Category = project.Category;
+                Title = project.Title;
+                Logo = project.Logo;
+                TimeStamp = project.TimeStamp;
+                Description = project.Description;
+                SetGoal = project.SetGoal;
+                AmountPledged = project.AmountPledged;
+                StartDate = project.StartDate;
+                EndDate = project.EndDate;
+            }
+        }
+        public Project GetProject()
+        {
+            Project project = new()
+            {
+                ProjectId = ProjectId,
+                Category = Category,
+                Title = Title,
+                Logo = Logo,
+                TimeStamp = TimeStamp,
+                Description = Description,
+                SetGoal = SetGoal,
+                AmountPledged = AmountPledged,
+                StartDate = StartDate,
+                EndDate = EndDate
+            };
+            return project;
+        }
     }
 }
