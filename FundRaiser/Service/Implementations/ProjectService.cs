@@ -41,6 +41,7 @@ namespace FundRaiser.Service.Implementations
             }
 
             _db.Projects.Remove(dbProject);
+            _db.SaveChanges();
             return true;
         }
 
@@ -62,8 +63,6 @@ namespace FundRaiser.Service.Implementations
             {
                 return null;
             }
-            //to id ginetai na allazei????
-            dbProject.ProjectId = projectOptions.ProjectId;
             dbProject.Category = projectOptions.Category;
             dbProject.Title = projectOptions.Title;
             dbProject.Logo = projectOptions.Logo;

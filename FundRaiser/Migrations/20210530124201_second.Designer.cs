@@ -4,14 +4,16 @@ using FundRaiser.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FundRaiser.Migrations
 {
     [DbContext(typeof(FundRaiserDbContext))]
-    partial class FundRaiserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210530124201_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -66,6 +66,7 @@ namespace FundRaiser.Service.Implementations
                 return false;
             }
             _db.Users.Remove(dbUser);
+            _db.SaveChanges();
             return true;
             
         }

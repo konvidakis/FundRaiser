@@ -16,6 +16,7 @@ namespace FundRaiser.Options
         public int ProjectId { get; set; }
 
         // public List<Transaction> Transactions { get; set; }
+        public RewardOption(){}
         public RewardOption(Reward reward)
         {
             if (reward != null)
@@ -33,7 +34,6 @@ namespace FundRaiser.Options
                 Title = Title,
                 Description = Description,
                 AmountRequired = AmountRequired,
-                RewardId = RewardId
             };
             return reward;
         }

@@ -24,11 +24,12 @@ namespace FundRaiser.Options
         //public List<Reward> Rewards { get; set; }
         //public List<ProjectPost> ProjectPosts { get; set; }
 
+        public ProjectOption() { }
+
         public ProjectOption(Project project)
         {
             if (project != null)
             {
-                ProjectId = project.ProjectId;
                 Category = project.Category;
                 Title = project.Title;
                 Logo = project.Logo;
@@ -38,17 +39,17 @@ namespace FundRaiser.Options
                 AmountPledged = project.AmountPledged;
                 StartDate = project.StartDate;
                 EndDate = project.EndDate;
+                ProjectId = ProjectId;
             }
         }
         public Project GetProject()
         {
             Project project = new()
             {
-                ProjectId = ProjectId,
                 Category = Category,
                 Title = Title,
                 Logo = Logo,
-                TimeStamp = TimeStamp,
+                TimeStamp = DateTime.Now,
                 Description = Description,
                 SetGoal = SetGoal,
                 AmountPledged = AmountPledged,

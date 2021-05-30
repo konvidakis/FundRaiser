@@ -51,7 +51,6 @@ namespace FundRaiser.Service.Implementations
             dbReward.Title = rewardOptions.Title;
             dbReward.Description = rewardOptions.Description;
             dbReward.AmountRequired = rewardOptions.AmountRequired;
-            dbReward.RewardId = rewardOptions.RewardId;
             _db.SaveChanges();
 
             return new RewardOption(dbReward);
@@ -65,6 +64,7 @@ namespace FundRaiser.Service.Implementations
             }
 
             _db.Rewards.Remove(dbReward);
+            _db.SaveChanges();
             return true;
         }
     }

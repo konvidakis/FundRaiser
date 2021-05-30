@@ -12,10 +12,11 @@ namespace FundRaiser.Options
         public int TransactionId { get; set; }
         public decimal Amount { get; set; }
         public DateTime TimeStamp { get; set; }
-        public Reward Reward { get; set; }
-        public User User { get; set; }
+        public int RewardId { get; set; }
+        public int UserId { get; set; }
         public int ProjectId { get; set; }
 
+        public TransactionOption() {}
 
         public TransactionOption(Transaction transaction)
         {
@@ -24,19 +25,17 @@ namespace FundRaiser.Options
                 TransactionId = transaction.TransactionId;
                 Amount = transaction.Amount;
                 TimeStamp = transaction.TimeStamp;
-                Reward = transaction.Reward;
-
+                RewardId = transaction.Reward.RewardId; // not sure if it is correct
             }
         }
 
         public Transaction GetTransaction()
         {
             Transaction transaction = new()
-            {                 
-                TransactionId = TransactionId,
+            {
                 Amount = Amount,
                 TimeStamp = DateTime.Now,
-                Reward = Reward,
+                //Reward = Reward,
             };
             return transaction;
         }

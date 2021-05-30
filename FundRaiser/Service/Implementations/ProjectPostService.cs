@@ -53,7 +53,6 @@ namespace FundRaiser.Service.Implementations
             dbProjectPost.Text = projectPostOptions.Text;
             dbProjectPost.Photo = projectPostOptions.Photo;
             dbProjectPost.Type = projectPostOptions.Type;
-            dbProjectPost.ProjectPostId = projectPostOptions.ProjectPostId;
             dbProjectPost.TimeStamp = projectPostOptions.TimeStamp;
             _db.SaveChanges();
 
@@ -68,6 +67,7 @@ namespace FundRaiser.Service.Implementations
             }
 
             _db.ProjectPosts.Remove(dbProjectPost);
+            _db.SaveChanges();
             return true;
         }
     }

@@ -51,6 +51,7 @@ namespace FundRaiser.Service.Implementations
             }
 
             _db.Transactions.Remove(dbTransaction);
+            _db.SaveChanges();
             return true;
         }
 
@@ -61,10 +62,9 @@ namespace FundRaiser.Service.Implementations
             {
                 return null;
             }
-            dbTransaction.TransactionId = transactionOptions.TransactionId;
             dbTransaction.Amount = transactionOptions.Amount;
             dbTransaction.TimeStamp = transactionOptions.TimeStamp;
-            dbTransaction.Reward = transactionOptions.Reward;
+            //dbTransaction.Reward = transactionOptions.Reward;
             _db.SaveChanges();
 
             return new TransactionOption(dbTransaction);
