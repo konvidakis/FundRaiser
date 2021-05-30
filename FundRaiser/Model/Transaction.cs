@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FundRaiser.Model
 {
     public class Transaction
-        {
+    {
             public int TransactionId { get; set; }
             public decimal Amount { get; set; }
             public DateTime TimeStamp { get; set; }
@@ -15,7 +15,7 @@ namespace FundRaiser.Model
             public User User { get; set; }
             public Project Project { get; set; }
 
-        }
+    }
 }
 
 

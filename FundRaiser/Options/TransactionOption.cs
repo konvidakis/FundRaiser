@@ -16,6 +16,29 @@ namespace FundRaiser.Options
         public User User { get; set; }
         public int ProjectId { get; set; }
 
-    }
 
+        public TransactionOption(Transaction transaction)
+        {
+            if (transaction != null)
+            {
+                TransactionId = transaction.TransactionId;
+                Amount = transaction.Amount;
+                TimeStamp = transaction.TimeStamp;
+                Reward = transaction.Reward;
+
+            }
+        }
+
+        public Transaction GetTransaction()
+        {
+            Transaction transaction = new()
+            {                 
+                TransactionId = TransactionId,
+                Amount = Amount,
+                TimeStamp = DateTime.Now,
+                Reward = Reward,
+            };
+            return transaction;
+        }
+    }
 }
