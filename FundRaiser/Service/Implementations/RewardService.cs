@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Database;
+using FundRaiser.Model;
 
 namespace FundRaiser.Service.Implementations
 {
@@ -18,22 +19,53 @@ namespace FundRaiser.Service.Implementations
         }
         public RewardOption CreateReward(RewardOption rewardOptions)
         {
-            throw new NotImplementedException();
-        }
+            if (rewardOptions == null)
+            {
+                return null;
+            }
 
-        public bool DeleteReward(int rewardId)
-        {
-            throw new NotImplementedException();
+            Reward reward = rewardOptions.GetRewardOption();
+            _db.Rewards.Add(reward);
+            _db.SaveChanges();
+            return new RewardOption(reward);
         }
 
         public RewardOption GetRewardById(int rewardId)
         {
-            throw new NotImplementedException();
+            Reward reward= _db.Rewards.Find(rewardId);
+            if (reward == null)
+            {
+                return null;
+            }
+
+            return new RewardOption(reward);
         }
 
         public RewardOption UpdateReward(int rewardId, RewardOption rewardOptions)
         {
-            throw new NotImplementedException();
+            Reward dbReward = _db.Rewards.Find(rewardId);
+            if (dbReward == null)
+            {
+                return null;
+            }
+            dbReward.Title = rewardOptions.Title;
+            dbReward.Description = rewardOptions.Description;
+            dbReward.AmountRequired = rewardOptions.AmountRequired;
+            dbReward.RewardId = rewardOptions.RewardId;
+            _db.SaveChanges();
+
+            return new RewardOption(dbReward);
+        }
+        public bool DeleteReward(int rewardId)
+        {
+            Reward dbReward = _db.Rewards.Find(rewardId);
+            if (dbReward == null)
+            {
+                return false;
+            }
+
+            _db.Rewards.Remove(dbReward);
+            return true;
         }
     }
 }

@@ -14,7 +14,28 @@ namespace FundRaiser.Options
         public string Description { get; set; }
         public decimal AmountRequired { get; set; }
         public int ProjectId { get; set; }
-        
+
         // public List<Transaction> Transactions { get; set; }
+        public RewardOption(Reward reward)
+        {
+            if (reward != null)
+            {
+                Title = reward.Title;
+                Description = reward.Description;
+                AmountRequired = reward.AmountRequired;
+                RewardId = reward.RewardId;
+            }
+        }
+        public Reward GetRewardOption()
+        {
+            Reward reward = new()
+            {
+                Title = Title,
+                Description = Description,
+                AmountRequired = AmountRequired,
+                RewardId = RewardId
+            };
+            return reward;
+        }
     }
 }
