@@ -15,6 +15,7 @@ namespace FundRaiser.Database
         public DbSet<Reward> Rewards { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
+        public object User { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
