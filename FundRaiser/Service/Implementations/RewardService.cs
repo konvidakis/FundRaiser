@@ -24,7 +24,14 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
 
-            Reward reward = rewardOptions.GetRewardOption();
+            Project project = _db.Projects.Find(rewardOptions.ProjectId);
+            Reward reward = new()
+            {
+                Title = rewardOptions.Title,
+                Description = rewardOptions.Description,
+                AmountRequired = rewardOptions.AmountRequired,
+                Project = project
+            };
             _db.Rewards.Add(reward);
             _db.SaveChanges();
             return new RewardOption(reward);
@@ -67,5 +74,16 @@ namespace FundRaiser.Service.Implementations
             _db.SaveChanges();
             return true;
         }
+
+        public List<Reward> GetRewardsByProjectId(int projectId)
+        {
+            return _db.Rewards.Where(r => r.Project.ProjectId == projectId).ToList();
+        }
+
+        public List<Reward> GetRewardsByUserId(int userId)
+        {
+            return _db.Transactions.Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList();
+        }
+
     }
 }

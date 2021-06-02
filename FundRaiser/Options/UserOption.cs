@@ -14,10 +14,7 @@ namespace FundRaiser.Options
         public string LastName { get; set; }
         public string Email { get; set; }
 
-        //project and transaction is missing
-
         public UserOption() { }
-
         public UserOption(User user)
         {
             if (user != null)
@@ -26,18 +23,7 @@ namespace FundRaiser.Options
                 FirstName = user.FirstName;
                 LastName = user.LastName;
                 Email = user.Email;
-                
             }
-        }
-        public User GetUser()
-        {
-            User user = new()
-            {
-                FirstName = FirstName,
-                LastName =LastName,
-                Email = Email,
-            };
-            return user;
         }
     }
 }

@@ -26,7 +26,12 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
 
-            User user = userOptions.GetUser();
+            User user = new()
+            {
+                FirstName = userOptions.FirstName,
+                LastName = userOptions.LastName,
+                Email = userOptions.Email,
+            };
             _db.Users.Add(user);
             _db.SaveChanges();
             return new UserOption(user);
@@ -68,7 +73,6 @@ namespace FundRaiser.Service.Implementations
             _db.Users.Remove(dbUser);
             _db.SaveChanges();
             return true;
-            
         }
     }
 }

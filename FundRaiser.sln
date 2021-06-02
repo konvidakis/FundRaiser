@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser", "FundRaiser\FundRaiser.csproj", "{60253896-6DEC-4668-A09F-6F332EBC2E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundRaiser", "FundRaiser\FundRaiser.csproj", "{60253896-6DEC-4668-A09F-6F332EBC2E8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundRaiser.Web", "FundRaiser.Web\FundRaiser.Web.csproj", "{B6F94B19-0CB3-461E-8254-D0C45477E862}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{60253896-6DEC-4668-A09F-6F332EBC2E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60253896-6DEC-4668-A09F-6F332EBC2E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60253896-6DEC-4668-A09F-6F332EBC2E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F94B19-0CB3-461E-8254-D0C45477E862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F94B19-0CB3-461E-8254-D0C45477E862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F94B19-0CB3-461E-8254-D0C45477E862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F94B19-0CB3-461E-8254-D0C45477E862}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,7 +17,6 @@ namespace FundRaiser.Options
         public int ProjectId { get; set; }
 
         public TransactionOption() {}
-
         public TransactionOption(Transaction transaction)
         {
             if (transaction != null)
@@ -25,19 +24,10 @@ namespace FundRaiser.Options
                 TransactionId = transaction.TransactionId;
                 Amount = transaction.Amount;
                 TimeStamp = transaction.TimeStamp;
-                RewardId = transaction.Reward.RewardId; // not sure if it is correct
+                RewardId = transaction.Reward.RewardId;
+                UserId = transaction.User.UserId;
+                ProjectId = transaction.Project.ProjectId;
             }
-        }
-
-        public Transaction GetTransaction()
-        {
-            Transaction transaction = new()
-            {
-                Amount = Amount,
-                TimeStamp = DateTime.Now,
-                //Reward = Reward,
-            };
-            return transaction;
         }
     }
 }

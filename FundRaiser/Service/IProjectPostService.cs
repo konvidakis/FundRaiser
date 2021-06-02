@@ -17,5 +17,6 @@ namespace FundRaiser.Service
 
         public bool DeleteProjectPost(int projectPostId);
 
+
     }
 }

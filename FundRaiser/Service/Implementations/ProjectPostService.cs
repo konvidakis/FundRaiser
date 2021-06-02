@@ -26,7 +26,15 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
 
-            ProjectPost projectPost = projectPostOptions.GetProjectPost() ;
+            Project project = _db.Projects.Find(projectPostOptions.ProjectPostId);
+            ProjectPost projectPost = new()
+            {
+                Text = projectPostOptions.Text,
+                Photo = projectPostOptions.Photo,
+                Type = projectPostOptions.Type,
+                TimeStamp = DateTime.Now,
+                Project = project
+            };
             _db.ProjectPosts.Add(projectPost);
             _db.SaveChanges();
             return new ProjectPostOption(projectPost);

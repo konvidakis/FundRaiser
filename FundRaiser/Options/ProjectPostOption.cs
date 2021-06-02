@@ -17,7 +17,6 @@ namespace FundRaiser.Options
         public int ProjectId { get; set; }
 
         public ProjectPostOption() { }
-
         public ProjectPostOption(ProjectPost projectPost)
         {
             if (projectPost != null)
@@ -28,17 +27,6 @@ namespace FundRaiser.Options
                 ProjectPostId = projectPost.ProjectPostId;
                 TimeStamp = projectPost.TimeStamp;
             }    
-        }
-        public ProjectPost GetProjectPost()
-        {
-            ProjectPost projectPost = new()
-            {
-                Text = Text,
-                Photo = Photo,
-                Type = Type,
-                TimeStamp = DateTime.Now
-            };
-            return projectPost;
         }
     }
 }

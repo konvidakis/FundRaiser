@@ -20,12 +20,8 @@ namespace FundRaiser.Options
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int UserId { get; set; }
-        //public List<Transaction> Transactions { get; set; }
-        //public List<Reward> Rewards { get; set; }
-        //public List<ProjectPost> ProjectPosts { get; set; }
 
         public ProjectOption() { }
-
         public ProjectOption(Project project)
         {
             if (project != null)
@@ -39,24 +35,9 @@ namespace FundRaiser.Options
                 AmountPledged = project.AmountPledged;
                 StartDate = project.StartDate;
                 EndDate = project.EndDate;
-                ProjectId = ProjectId;
+                ProjectId = project.ProjectId;
+                UserId = project.User.UserId;
             }
-        }
-        public Project GetProject()
-        {
-            Project project = new()
-            {
-                Category = Category,
-                Title = Title,
-                Logo = Logo,
-                TimeStamp = DateTime.Now,
-                Description = Description,
-                SetGoal = SetGoal,
-                AmountPledged = AmountPledged,
-                StartDate = StartDate,
-                EndDate = EndDate
-            };
-            return project;
         }
     }
 }

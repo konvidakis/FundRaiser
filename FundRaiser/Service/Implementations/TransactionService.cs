@@ -13,7 +13,6 @@ namespace FundRaiser.Service.Implementations
    
     {
         private readonly FundRaiserDbContext _db;
-
         public TransactionService(FundRaiserDbContext db)
         {
             _db = db;
@@ -26,7 +25,17 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
 
-            Transaction transaction = transactionOptions.GetTransaction();
+            Project project = _db.Projects.Find(transactionOptions.ProjectId);
+            User user = _db.Users.Find(transactionOptions.UserId);
+            Reward reward = _db.Rewards.Find(transactionOptions.RewardId);
+            Transaction transaction = new()
+            {
+                Amount = transactionOptions.Amount,
+                TimeStamp = DateTime.Now,
+                Reward = reward,
+                Project = project,
+                User = user
+            };
             _db.Transactions.Add(transaction);
             _db.SaveChanges();
             return new TransactionOption(transaction);
@@ -64,7 +73,6 @@ namespace FundRaiser.Service.Implementations
             }
             dbTransaction.Amount = transactionOptions.Amount;
             dbTransaction.TimeStamp = transactionOptions.TimeStamp;
-            //dbTransaction.Reward = transactionOptions.Reward;
             _db.SaveChanges();
 
             return new TransactionOption(dbTransaction);
