@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Database;
 using FundRaiser.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser.Service.Implementations
 {
@@ -62,12 +63,13 @@ namespace FundRaiser.Service.Implementations
 
         public ProjectOption GetProjectById(int projectId)
         {
-            Project project = _db.Projects.Find(projectId);
+
+            Project project = _db.Projects.Include(p => p.User).FirstOrDefault(o => o.ProjectId == projectId);
             if (project == null)
             {
                 return null;
             }
-
+            //Console.WriteLine("-- "+project.User.UserId);
             return new ProjectOption(project);
         }
 
@@ -100,13 +102,13 @@ namespace FundRaiser.Service.Implementations
         public List<Project> GetProjectsCreatedByUserId(int userId)
         {
             //return _db.Users.Find(userId).Projects.ToList();
-            return _db.Projects.Where(p => p.User.UserId == userId).ToList();
+            return _db.Projects.Include(t => t.User).Where(p => p.User.UserId == userId).ToList();
         }
 
         public List<Project> GetProjectsInvestedByUserId(int userId)
         {
             //return _db.Transactions.Select(p => p.Project).Where(t => t.User.UserId == userId).ToList();
-            return _db.Transactions.Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList();
+            return _db.Transactions.Include(t => t.User).Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList();
             //return _db.Users.Find(userId).Transactions.Select(t => t.Project).Distinct().ToList();
         }
 
@@ -123,19 +125,19 @@ namespace FundRaiser.Service.Implementations
 
         public List<Project> GetProjectsByCategory(Category category)
         {
-            return _db.Projects.Where(p => p.Category == category).ToList();
+            return _db.Projects.Include(t => t.User).Where(p => p.Category == category).ToList();
         }
 
         public List<Project> GetProjectsByTextSearch(String textSearch)
         {
-            return _db.Projects.Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList();
+            return _db.Projects.Include(t => t.User).Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList();
         }
 
         //returns the projects ordered by the most transactions
         public List<Project> GetProjectsTrending()
         {
             //return _db.Transactions
-            return _db.Projects.OrderByDescending(p => p.Transactions.Count()).ToList();
+            return _db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).ToList();
         }
 
     }

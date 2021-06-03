@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser.Service.Implementations
 {
@@ -41,8 +42,8 @@ namespace FundRaiser.Service.Implementations
         }
 
         public ProjectPostOption GetProjectPostById(int projectPostId)
-        {
-            ProjectPost projectPost = _db.ProjectPosts.Find(projectPostId);
+        { 
+            ProjectPost projectPost = _db.ProjectPosts.Include(p => p.Project).FirstOrDefault(o => o.ProjectPostId == projectPostId);
             if (projectPost == null)
             {
                 return null;
@@ -81,7 +82,7 @@ namespace FundRaiser.Service.Implementations
 
         public List<ProjectPost> GetAllProjectPosts(int projectId)
         {
-            return _db.ProjectPosts.Where(p => p.Project.ProjectId == projectId).ToList();
+            return _db.ProjectPosts.Include(p => p.Project).Where(p => p.Project.ProjectId == projectId).ToList();
         }
     }
 }

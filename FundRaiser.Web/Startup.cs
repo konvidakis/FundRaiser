@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FundRaiser.Database;
+using FundRaiser.Service;
+using FundRaiser.Service.Implementations;
 
 namespace FundRaiser.Web
 {
@@ -24,6 +27,8 @@ namespace FundRaiser.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IProjectService>(s=> new ProjectService(new FundRaiserDbContext()));
+            //services.AddScoped<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

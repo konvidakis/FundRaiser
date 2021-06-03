@@ -22,20 +22,18 @@ namespace FundRaiser.Test
             _testOutputHelper = testOutputHelper;
 
         }
-        /*[Fact]
+        [Fact]
         public void GetProjectsCreatedByUserIdTest()
         {
             List<Project> projects = _projectService.GetProjectsCreatedByUserId(1);
             _testOutputHelper.WriteLine("Count"+projects.Count);
             foreach (var project in projects)
             {
-
-                _testOutputHelper.WriteLine("sad");
-                _testOutputHelper.WriteLine("--"+project.User.ToString());
-                Assert.True(1==1,"lala");
+                _testOutputHelper.WriteLine("projectId"+project.ProjectId);
+                _testOutputHelper.WriteLine("--"+project.User.UserId);
                 Assert.True(project.User.UserId==1,"The projects returned are all by the user with id 1");
             }
-        }*/
+        }
 
         [Fact]
         public void GetProjectsByCategoryTest()

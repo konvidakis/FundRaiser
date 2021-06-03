@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Database;
 using FundRaiser.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser.Service.Implementations
 {
@@ -43,7 +44,7 @@ namespace FundRaiser.Service.Implementations
 
         public TransactionOption GetTransactionById(int transactionId)
         {
-            Transaction transaction = _db.Transactions.Find(transactionId);
+            Transaction transaction = _db.Transactions.Include(u=>u.User).Include(p=>p.Project).Include(u=>u.Reward).FirstOrDefault(o => o.TransactionId == transactionId);
             if (transaction == null)
             {
                 return null;

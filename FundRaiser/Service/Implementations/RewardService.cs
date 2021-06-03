@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FundRaiser.Database;
 using FundRaiser.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser.Service.Implementations
 {
@@ -39,7 +40,7 @@ namespace FundRaiser.Service.Implementations
 
         public RewardOption GetRewardById(int rewardId)
         {
-            Reward reward= _db.Rewards.Find(rewardId);
+            Reward reward = _db.Rewards.Include(p => p.Project).FirstOrDefault(o => o.RewardId == rewardId);
             if (reward == null)
             {
                 return null;
@@ -77,12 +78,12 @@ namespace FundRaiser.Service.Implementations
 
         public List<Reward> GetRewardsByProjectId(int projectId)
         {
-            return _db.Rewards.Where(r => r.Project.ProjectId == projectId).ToList();
+            return _db.Rewards.Include(p => p.Project).Where(r => r.Project.ProjectId == projectId).ToList();
         }
 
         public List<Reward> GetRewardsByUserId(int userId)
         {
-            return _db.Transactions.Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList();
+            return _db.Transactions.Include(p => p.Project).Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList();
         }
 
     }

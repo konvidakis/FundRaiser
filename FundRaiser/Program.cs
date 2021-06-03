@@ -22,6 +22,9 @@ namespace FundRaiser
             UserService user = new UserService(db);
             TransactionService transactionService = new TransactionService(db);
 
+            ProjectOption projectOption = projectService.GetProjectById(11);
+            Console.WriteLine(projectOption.UserId);
+
             /*ProjectOption projectOption = new ProjectOption()
             {
                Title = "test12",
@@ -68,7 +71,7 @@ namespace FundRaiser
             }*/
 
 
-            TransactionOption transactionOption = new TransactionOption()
+            /*TransactionOption transactionOption = new TransactionOption()
             {
                 UserId = 1,
                 ProjectId = 9,
@@ -79,7 +82,7 @@ namespace FundRaiser
             foreach (var project in projects)
             {
                 Console.WriteLine(project.ProjectId);
-            }
+            }*/
         }
     }
 }

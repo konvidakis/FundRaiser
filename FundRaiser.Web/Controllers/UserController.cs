@@ -11,7 +11,7 @@ namespace FundRaiser.Web.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserService _service;
+        /*private readonly IUserService _service;
 
         public UserController(IUserService service)
         {
@@ -97,6 +97,6 @@ namespace FundRaiser.Web.Controllers
             {
                 return View();
             }
-        }
+        }*/
     }
 }
