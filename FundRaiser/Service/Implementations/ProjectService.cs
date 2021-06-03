@@ -99,7 +99,6 @@ namespace FundRaiser.Service.Implementations
 
         public List<Project> GetProjectsCreatedByUserId(int userId)
         {
-
             //return _db.Users.Find(userId).Projects.ToList();
             return _db.Projects.Where(p => p.User.UserId == userId).ToList();
         }
@@ -108,6 +107,7 @@ namespace FundRaiser.Service.Implementations
         {
             //return _db.Transactions.Select(p => p.Project).Where(t => t.User.UserId == userId).ToList();
             return _db.Transactions.Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList();
+            //return _db.Users.Find(userId).Transactions.Select(t => t.Project).Distinct().ToList();
         }
 
         public decimal? GetFinancialProgress(int projectId)
@@ -119,6 +119,23 @@ namespace FundRaiser.Service.Implementations
             }
 
             return (project.AmountPledged / project.SetGoal)*100;
+        }
+
+        public List<Project> GetProjectsByCategory(Category category)
+        {
+            return _db.Projects.Where(p => p.Category == category).ToList();
+        }
+
+        public List<Project> GetProjectsByTextSearch(String textSearch)
+        {
+            return _db.Projects.Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList();
+        }
+
+        //returns the projects ordered by the most transactions
+        public List<Project> GetProjectsTrending()
+        {
+            //return _db.Transactions
+            return _db.Projects.OrderByDescending(p => p.Transactions.Count()).ToList();
         }
 
     }

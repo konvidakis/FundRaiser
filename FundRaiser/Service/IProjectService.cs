@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FundRaiser.Service
 {
-    interface IProjectService
+    public interface IProjectService
     {
         public ProjectOption CreateProject(ProjectOption projectOptions);
 
@@ -19,8 +19,17 @@ namespace FundRaiser.Service
         public bool DeleteProject(int projectId);
 
         public List<Project> GetAllProjects();
+
         public List<Project> GetProjectsCreatedByUserId(int userId);
+        
+        public List<Project> GetProjectsInvestedByUserId(int userId);
 
         public decimal? GetFinancialProgress(int projectId);
+
+        public List<Project> GetProjectsByCategory(Category category);
+
+        public List<Project> GetProjectsByTextSearch(String textSearch);
+
+        public List<Project> GetProjectsTrending();
     }
 }

@@ -26,7 +26,7 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
 
-            Project project = _db.Projects.Find(projectPostOptions.ProjectPostId);
+            Project project = _db.Projects.Find(projectPostOptions.ProjectId);
             ProjectPost projectPost = new()
             {
                 Text = projectPostOptions.Text,
@@ -77,6 +77,11 @@ namespace FundRaiser.Service.Implementations
             _db.ProjectPosts.Remove(dbProjectPost);
             _db.SaveChanges();
             return true;
+        }
+
+        public List<ProjectPost> GetAllProjectPosts(int projectId)
+        {
+            return _db.ProjectPosts.Where(p => p.Project.ProjectId == projectId).ToList();
         }
     }
 }
