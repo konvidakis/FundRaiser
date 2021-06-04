@@ -25,20 +25,20 @@ namespace FundRaiser.Test
         [Fact]
         public void GetProjectsCreatedByUserIdTest()
         {
-            List<Project> projects = _projectService.GetProjectsCreatedByUserId(1);
+            List<ProjectOption> projects = _projectService.GetProjectsCreatedByUserId(1);
             _testOutputHelper.WriteLine("Count"+projects.Count);
             foreach (var project in projects)
             {
                 _testOutputHelper.WriteLine("projectId"+project.ProjectId);
-                _testOutputHelper.WriteLine("--"+project.User.UserId);
-                Assert.True(project.User.UserId==1,"The projects returned are all by the user with id 1");
+                _testOutputHelper.WriteLine("--"+project.UserId);
+                Assert.True(project.UserId==1,"The projects returned are all by the user with id 1");
             }
         }
 
         [Fact]
         public void GetProjectsByCategoryTest()
         {
-            List<Project> projects = _projectService.GetProjectsByCategory(Category.Katigoria2);
+            List<ProjectOption> projects = _projectService.GetProjectsByCategory(Category.Katigoria2);
             foreach (var project in projects)
             {
                 Assert.True(project.Category.Equals(Category.Katigoria2), "The projects returned all have the correct category");
@@ -49,7 +49,7 @@ namespace FundRaiser.Test
         public void GetProjectsByTextSearchTest()
         {
             String searchText = "title";
-            List<Project> projects = _projectService.GetProjectsByTextSearch(searchText);
+            List<ProjectOption> projects = _projectService.GetProjectsByTextSearch(searchText);
             foreach (var project in projects)
             {
                 _testOutputHelper.WriteLine("--" + project.Title);

@@ -20,14 +20,12 @@ namespace FundRaiser.Web.Controllers
         public ProjectsController(IProjectService projectService)
         {
             _projectService = projectService;
-            
         }
 
         // GET: Projects
         public  IActionResult Index()
         {
-            List<ProjectOption> projectOptions = _projectService.ProjectToProjectOptions(_projectService.GetAllProjects());
-            return View(projectOptions);
+            return View(_projectService.GetAllProjects());
         }
 
         // GET: Projects/Details/5

@@ -18,8 +18,10 @@ namespace FundRaiser.Service
 
         public bool DeleteReward(int rewardId);
 
-        //public List<Reward> GetRewardsByProjectId(int projectId);
+        public List<RewardOption> GetRewardsByProjectId(int projectId);
 
-        //public List<Reward> GetRewardsByUserId(int userId);
+        public List<RewardOption> GetRewardsByUserId(int userId);
+
+        public List<RewardOption> RewardToRewardOptions(List<Reward> rewards);
     }
 }

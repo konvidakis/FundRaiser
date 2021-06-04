@@ -94,21 +94,21 @@ namespace FundRaiser.Service.Implementations
             return new ProjectOption(dbProject);
         }
 
-        public List<Project> GetAllProjects()
+        public List<ProjectOption> GetAllProjects()
         {
-            return _db.Projects.Include(t => t.User).ToList();
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).ToList());
         }
 
-        public List<Project> GetProjectsCreatedByUserId(int userId)
+        public List<ProjectOption> GetProjectsCreatedByUserId(int userId)
         {
             //return _db.Users.Find(userId).Projects.ToList();
-            return _db.Projects.Include(t => t.User).Where(p => p.User.UserId == userId).ToList();
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).Where(p => p.User.UserId == userId).ToList());
         }
 
-        public List<Project> GetProjectsInvestedByUserId(int userId)
+        public List<ProjectOption> GetProjectsInvestedByUserId(int userId)
         {
             //return _db.Transactions.Select(p => p.Project).Where(t => t.User.UserId == userId).ToList();
-            return _db.Transactions.Include(t => t.User).Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList();
+            return ProjectToProjectOptions(_db.Transactions.Include(t => t.User).Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList());
             //return _db.Users.Find(userId).Transactions.Select(t => t.Project).Distinct().ToList();
         }
 
@@ -123,21 +123,21 @@ namespace FundRaiser.Service.Implementations
             return (project.AmountPledged / project.SetGoal)*100;
         }
 
-        public List<Project> GetProjectsByCategory(Category category)
+        public List<ProjectOption> GetProjectsByCategory(Category category)
         {
-            return _db.Projects.Include(t => t.User).Where(p => p.Category == category).ToList();
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).Where(p => p.Category == category).ToList());
         }
 
-        public List<Project> GetProjectsByTextSearch(String textSearch)
+        public List<ProjectOption> GetProjectsByTextSearch(String textSearch)
         {
-            return _db.Projects.Include(t => t.User).Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList();
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList());
         }
 
         //returns the projects ordered by the most transactions
-        public List<Project> GetProjectsTrending()
+        public List<ProjectOption> GetProjectsTrending()
         {
             //return _db.Transactions
-            return _db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).ToList();
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).ToList());
         }
 
         public List<ProjectOption> ProjectToProjectOptions(List<Project> projects)

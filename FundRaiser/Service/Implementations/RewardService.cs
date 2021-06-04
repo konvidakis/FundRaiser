@@ -76,14 +76,21 @@ namespace FundRaiser.Service.Implementations
             return true;
         }
 
-        public List<Reward> GetRewardsByProjectId(int projectId)
+        public List<RewardOption> GetRewardsByProjectId(int projectId)
         {
-            return _db.Rewards.Include(p => p.Project).Where(r => r.Project.ProjectId == projectId).ToList();
+            return RewardToRewardOptions(_db.Rewards.Include(p => p.Project).Where(r => r.Project.ProjectId == projectId).ToList());
         }
 
-        public List<Reward> GetRewardsByUserId(int userId)
+        public List<RewardOption> GetRewardsByUserId(int userId)
         {
-            return _db.Transactions.Include(p => p.Project).Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList();
+            return RewardToRewardOptions(_db.Transactions.Include(p => p.Project).Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList());
+        }
+
+        public List<RewardOption> RewardToRewardOptions(List<Reward> rewards)
+        {
+            List<RewardOption> rewardOptions = new List<RewardOption>();
+            rewards.ForEach(reward => rewardOptions.Add(new RewardOption(reward)));
+            return rewardOptions;
         }
 
     }

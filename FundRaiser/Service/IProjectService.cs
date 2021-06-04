@@ -18,19 +18,19 @@ namespace FundRaiser.Service
 
         public bool DeleteProject(int projectId);
 
-        public List<Project> GetAllProjects();
+        public List<ProjectOption> GetAllProjects();
 
-        public List<Project> GetProjectsCreatedByUserId(int userId);
+        public List<ProjectOption> GetProjectsCreatedByUserId(int userId);
         
-        public List<Project> GetProjectsInvestedByUserId(int userId);
+        public List<ProjectOption> GetProjectsInvestedByUserId(int userId);
 
         public decimal? GetFinancialProgress(int projectId);
 
-        public List<Project> GetProjectsByCategory(Category category);
+        public List<ProjectOption> GetProjectsByCategory(Category category);
 
-        public List<Project> GetProjectsByTextSearch(String textSearch);
+        public List<ProjectOption> GetProjectsByTextSearch(String textSearch);
 
-        public List<Project> GetProjectsTrending();
+        public List<ProjectOption> GetProjectsTrending();
 
         public List<ProjectOption> ProjectToProjectOptions(List<Project> projects);
     }

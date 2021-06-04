@@ -18,6 +18,6 @@ namespace FundRaiser.Service
 
         public bool DeleteProjectPost(int projectPostId);
 
-        public List<ProjectPost> GetAllProjectPosts(int projectId);
+        public List<ProjectPostOption> GetAllProjectPosts(int projectId);
     }
 }
