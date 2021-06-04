@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FundRaiser.Database;
 using FundRaiser.Model;
+using FundRaiser.Options;
 using FundRaiser.Service;
 using FundRaiser.Service.Implementations;
 
-namespace FundRaiser.Web
+namespace FundRaiser.Web.Controllers
 {
     public class ProjectsController : Controller
     {
         public IProjectService _projectService;
-        private readonly FundRaiserDbContext _context;
 
         public ProjectsController(IProjectService projectService)
         {
@@ -26,20 +26,19 @@ namespace FundRaiser.Web
         // GET: Projects
         public  IActionResult Index()
         {
-            return View( _projectService.GetAllProjects());
+            List<ProjectOption> projectOptions = _projectService.ProjectToProjectOptions(_projectService.GetAllProjects());
+            return View(projectOptions);
         }
 
         // GET: Projects/Details/5
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id)
         {
-
-            /*
             if (id == null)
             {
                 return NotFound();
-            }*/
+            }
 
-            var project = _projectService.GetProjectById(id);
+            var project = _projectService.GetProjectById((int)id);
             if (project == null)
             {
                 return NotFound();
@@ -59,26 +58,25 @@ namespace FundRaiser.Web
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectId,Category,Title,Logo,TimeStamp,Description,SetGoal,AmountPledged,StartDate,EndDate")] Project project)
+        public IActionResult Create([Bind("ProjectId,Category,Title,Logo,TimeStamp,Description,SetGoal,AmountPledged,StartDate,EndDate")] ProjectOption projectOption)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(project);
-                await _context.SaveChangesAsync();
+                _projectService.CreateProject(projectOption);
                 return RedirectToAction(nameof(Index));
             }
-            return View(project);
+            return View(projectOption);
         }
 
         // GET: Projects/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Projects.FindAsync(id);
+            var project = _projectService.GetProjectById((int) id);
             if (project == null)
             {
                 return NotFound();
@@ -91,9 +89,9 @@ namespace FundRaiser.Web
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Category,Title,Logo,TimeStamp,Description,SetGoal,AmountPledged,StartDate,EndDate")] Project project)
+        public IActionResult Edit(int id, [Bind("ProjectId,Category,Title,Logo,TimeStamp,Description,SetGoal,AmountPledged,StartDate,EndDate")] ProjectOption projectOption)
         {
-            if (id != project.ProjectId)
+            if (id != projectOption.ProjectId)
             {
                 return NotFound();
             }
@@ -102,12 +100,11 @@ namespace FundRaiser.Web
             {
                 try
                 {
-                    _context.Update(project);
-                    await _context.SaveChangesAsync();
+                    _projectService.UpdateProject(id, projectOption);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProjectExists(project.ProjectId))
+                    if (!ProjectExists(projectOption.ProjectId))
                     {
                         return NotFound();
                     }
@@ -118,19 +115,18 @@ namespace FundRaiser.Web
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(project);
+            return View(projectOption);
         }
 
         // GET: Projects/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Projects
-                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            var project = _projectService.GetProjectById((int)id);
             if (project == null)
             {
                 return NotFound();
@@ -142,17 +138,20 @@ namespace FundRaiser.Web
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
+            _projectService.DeleteProject(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProjectExists(int id)
         {
-            return _context.Projects.Any(e => e.ProjectId == id);
+            var project = _projectService.GetProjectById(id);
+            if (project == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

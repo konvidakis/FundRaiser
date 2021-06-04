@@ -96,7 +96,7 @@ namespace FundRaiser.Service.Implementations
 
         public List<Project> GetAllProjects()
         {
-            return _db.Projects.ToList();
+            return _db.Projects.Include(t => t.User).ToList();
         }
 
         public List<Project> GetProjectsCreatedByUserId(int userId)
@@ -138,6 +138,13 @@ namespace FundRaiser.Service.Implementations
         {
             //return _db.Transactions
             return _db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).ToList();
+        }
+
+        public List<ProjectOption> ProjectToProjectOptions(List<Project> projects)
+        {
+            List<ProjectOption> projectOptions = new List<ProjectOption>();
+            projects.ForEach(project => projectOptions.Add(new ProjectOption(project)));
+            return projectOptions;
         }
 
     }
