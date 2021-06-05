@@ -65,6 +65,21 @@
     </div>
 
 
+
+    <div>
+        Choose a Reward to Fund this Project
+        <form asp-action="FundProject" asp-route-projectId="@Model.ProjectOption.ProjectId" asp-route-userId="@Model.ProjectOption.UserId">
+            <select name="rewardId">
+                @foreach (var reward in Model.RewardOptions)
+                {
+                    <option value="@reward.RewardId">@reward.Title</option>
+                }
+            </select>
+            <input type="submit" value="Fund!" />
+
+        </form>
+    </div>
+    <br />
     <!-- Rewards table -->
     <div class="col-lg-6 col-md-12 col-sm-12">
         <h2>Rewards</h2>
