@@ -16,5 +16,8 @@ namespace FundRaiser.Service
         public UserOption UpdateUser(int userId, UserOption userOptions);
 
         public bool DeleteUser(int userId);
+
+        public UserOption GetUserByEmail(string email);
+
     }
 }

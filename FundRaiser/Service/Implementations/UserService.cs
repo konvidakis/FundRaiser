@@ -49,6 +49,17 @@ namespace FundRaiser.Service.Implementations
             return new UserOption(user);
         }
 
+        public UserOption GetUserByEmail(string email)
+        {
+            User user = _db.Users.FirstOrDefault(u=>u.Email.Equals(email));
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new UserOption(user);
+        }
+
         public UserOption UpdateUser(int userId, UserOption userOptions)
         {
             User dbUser = _db.Users.Find(userId);
