@@ -1,0 +1,114 @@
+﻿@using FundRaiser.Model
+@using System.Linq
+@using FundRaiser.Options
+@model FundRaiser.Web.Models.CreateProjectViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div  class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.Category" class="control-label"></label>
+                <select asp-for="ProjectOption.Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control" required>
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="ProjectOption.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.Title" class="control-label"></label>
+                <input asp-for="ProjectOption.Title" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.Logo" class="control-label"></label>
+                <input asp-for="ProjectOption.Logo" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.Description" class="control-label"></label>
+                <textarea asp-for="ProjectOption.Description" class="form-control" required></textarea>
+                <span asp-validation-for="ProjectOption.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.SetGoal" class="control-label"></label>
+                <input asp-for="ProjectOption.SetGoal" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.SetGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.AmountPledged" class="control-label"></label>
+                <input asp-for="ProjectOption.AmountPledged" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.AmountPledged" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.StartDate" class="control-label"></label>
+                <input asp-for="ProjectOption.StartDate" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectOption.EndDate" class="control-label"></label>
+                <input asp-for="ProjectOption.EndDate" class="form-control" required/>
+                <span asp-validation-for="ProjectOption.EndDate" class="text-danger"></span>
+            </div>
+
+            Rewards
+
+            <div class="form-group">
+                <label asp-for="RewardOptions[0].Title" class="control-label"></label>
+                <input asp-for="RewardOptions[0].Title" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[0].Title" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="RewardOptions[0].Description" class="control-label"></label>
+                <input asp-for="RewardOptions[0].Description" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[0].Description" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="RewardOptions[0].AmountRequired" class="control-label"></label>
+                <input asp-for="RewardOptions[0].AmountRequired" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[0].AmountRequired" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="RewardOptions[1].Title" class="control-label"></label>
+                <input asp-for="RewardOptions[1].Title" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[1].Title" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="RewardOptions[1].Description" class="control-label"></label>
+                <input asp-for="RewardOptions[1].Description" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[1].Description" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="RewardOptions[1].AmountRequired" class="control-label"></label>
+                <input asp-for="RewardOptions[1].AmountRequired" class="form-control" required/>
+                <span asp-validation-for="RewardOptions[1].AmountRequired" class="text-danger"></span>
+            </div>
+            
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

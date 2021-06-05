@@ -62,6 +62,8 @@ namespace FundRaiser.Web.Controllers
             {
                 _projectService.CreateProject(projectOption);
                 return RedirectToAction(nameof(Index));
+                //return RedirectToAction("Create", "Index");
+                //return RedirectToAction("Index","Projects");
             }
             return View(projectOption);
         }
