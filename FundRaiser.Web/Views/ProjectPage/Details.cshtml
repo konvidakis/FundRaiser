@@ -1,0 +1,117 @@
+﻿@model FundRaiser.Web.Models.ProjectPageViewModel
+
+@{
+    ViewData["Title"] = "ProjectPageViewModel";
+}
+
+
+<div class="row">
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>Project</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.Category)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.Category)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.Logo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.Logo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.SetGoal)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.SetGoal)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.AmountPledged)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.AmountPledged)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.StartDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.StartDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectOption.EndDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectOption.EndDate)
+            </dd>
+        </dl>
+    </div>
+
+
+    <!-- Rewards table -->
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <h2>Rewards</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Amount Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reward in Model.RewardOptions)
+                {
+                    <tr>
+                        <td>@reward.Title</td>
+                        <td>@reward.Description</td>
+                        <td>@reward.AmountRequired</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    </div>
+
+    <!-- Rewards table -->
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <h2>Project Posts</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">TimeStamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var projectPost in Model.ProjectPostOptions)
+                {
+                    <tr>
+                        <td>@projectPost.Photo</td>
+                        <td>@projectPost.Text</td>
+                        <td>@projectPost.TimeStamp</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>

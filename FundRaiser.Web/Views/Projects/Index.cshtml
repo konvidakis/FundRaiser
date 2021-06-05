@@ -92,7 +92,7 @@
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
+                    <a asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
                 </td>
             </tr>
         }
