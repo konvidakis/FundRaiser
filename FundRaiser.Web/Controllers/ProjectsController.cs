@@ -23,10 +23,10 @@ namespace FundRaiser.Web.Controllers
         }
 
         // GET: Projects
-        public  IActionResult Index()
-        {
-            return View(_projectService.GetAllProjects());
-        }
+        //public  IActionResult Index()
+        //{
+        //    return View(_projectService.GetAllProjects());
+        //}
 
         // GET: Projects/Details/5
         public IActionResult Details(int? id)
@@ -153,5 +153,43 @@ namespace FundRaiser.Web.Controllers
             }
             return true;
         }
+
+        public IActionResult ProjectsCreatedByUser(int userId)
+        {
+            return View(_projectService.GetProjectsCreatedByUserId(userId));
+        }
+
+        public IActionResult ProjectsInvestedByUser(int userId)
+        {
+            return View(_projectService.GetProjectsInvestedByUserId(userId));
+        }
+
+
+        public IActionResult Index(String searchString, String category)
+        {
+
+            
+            if (String.IsNullOrEmpty(searchString)&& String.IsNullOrEmpty(category))
+            {
+                return View(_projectService.GetAllProjects());
+            }
+            //return View(_projectService.GetProjectsByTextSearch(searchString));
+
+            if (String.IsNullOrEmpty(searchString))
+            {
+                return View(_projectService.GetProjectsByCategory((Category)Enum.Parse(typeof(Category),category)));
+            }
+
+            if (String.IsNullOrEmpty(category))
+            {
+                return View(_projectService.GetProjectsByTextSearch(searchString));
+            }
+
+            return View(_projectService.GetProjectsByCategoryAndTextSearch(searchString, (Category)Enum.Parse(typeof(Category), category)));
+
+        }
+
+
+
     }
 }

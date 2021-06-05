@@ -25,6 +25,7 @@ namespace FundRaiser.Options
                 Photo = projectPost.Photo;
                 Type = projectPost.Type;
                 ProjectPostId = projectPost.ProjectPostId;
+                ProjectId = projectPost.Project.ProjectId;
                 TimeStamp = projectPost.TimeStamp;
             }    
         }

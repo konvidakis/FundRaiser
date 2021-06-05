@@ -24,6 +24,7 @@ namespace FundRaiser.Options
                 Description = reward.Description;
                 AmountRequired = reward.AmountRequired;
                 RewardId = reward.RewardId;
+                ProjectId = reward.Project.ProjectId;
             }
         }
     }

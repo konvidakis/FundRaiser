@@ -29,6 +29,9 @@ namespace FundRaiser.Web
             services.AddControllersWithViews();
             services.AddScoped<IProjectService>(s=> new ProjectService(new FundRaiserDbContext()));
             services.AddScoped<IRewardService>(r => new RewardService(new FundRaiserDbContext()));
+            services.AddScoped<IProjectPostService>(r => new ProjectPostService(new FundRaiserDbContext()));
+            services.AddScoped<ITransactionService>(r => new TransactionService(new FundRaiserDbContext()));
+            services.AddScoped<IUserService>(r => new UserService(new FundRaiserDbContext()));
             //services.AddScoped<IProjectService, ProjectService>();
         }
 

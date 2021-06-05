@@ -133,6 +133,11 @@ namespace FundRaiser.Service.Implementations
             return ProjectToProjectOptions(_db.Projects.Include(t => t.User).Where(x => x.Title.ToLower().Contains(textSearch.ToLower())).ToList());
         }
 
+        public List<ProjectOption> GetProjectsByCategoryAndTextSearch(String textSearch, Category category)
+        {
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).Where(x => x.Title.ToLower().Contains(textSearch.ToLower()) && x.Category == category).ToList());
+        }
+
         //returns the projects ordered by the most transactions
         public List<ProjectOption> GetProjectsTrending()
         {

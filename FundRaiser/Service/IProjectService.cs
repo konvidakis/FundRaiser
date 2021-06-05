@@ -33,5 +33,7 @@ namespace FundRaiser.Service
         public List<ProjectOption> GetProjectsTrending();
 
         public List<ProjectOption> ProjectToProjectOptions(List<Project> projects);
+
+        public List<ProjectOption> GetProjectsByCategoryAndTextSearch(String textSearch, Category category);
     }
 }
