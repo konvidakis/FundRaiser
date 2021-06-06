@@ -11,8 +11,7 @@ namespace FundRaiser.Options
     {
         public int ProjectPostId { get; set; }
         public string Text { get; set; }
-        public string Photo { get; set; }
-        public PostType Type { get; set; }
+        public string Multimedia { get; set; }
         public DateTime TimeStamp { get; set; }
         public int ProjectId { get; set; }
 
@@ -22,8 +21,7 @@ namespace FundRaiser.Options
             if (projectPost != null)
             {
                 Text = projectPost.Text;
-                Photo = projectPost.Photo;
-                Type = projectPost.Type;
+                Multimedia = projectPost.Multimedia;
                 ProjectPostId = projectPost.ProjectPostId;
                 ProjectId = projectPost.Project.ProjectId;
                 TimeStamp = projectPost.TimeStamp;

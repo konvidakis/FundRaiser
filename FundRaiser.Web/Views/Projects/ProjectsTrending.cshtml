@@ -1,32 +1,11 @@
-﻿@using FundRaiser.Model
-@model IEnumerable<FundRaiser.Options.ProjectOption>
+﻿@model IEnumerable<FundRaiser.Options.ProjectOption>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Projects Invested By User";
 }
 
-<h1>Index</h1>
+<h1>Projects Invested By User</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-action="Index">
-    <p>
-        Search by Title: <input type="text" name="searchString" />
-    </p>
-    <p>
-        Select Category
-        <select asp-items="Html.GetEnumSelectList<Category>()" name="category">
-            <option value="">Select category</option>
-        </select>
-    </p>
-    <input type="submit" value="Filter" />
-    
-</form>
-<form asp-action="ProjectsTrending">
-    <input type="text" name="trending" value="trending" hidden readonly />
-    <input type="submit" value="GetProjectsTrending" />
-</form>
 <table class="table">
     <thead>
         <tr>
@@ -92,9 +71,10 @@
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
                 <td>
-                    <a asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

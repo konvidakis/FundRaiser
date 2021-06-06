@@ -27,7 +27,7 @@ namespace FundRaiser.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Text,Photo,Type,ProjectId")] ProjectPostOption projectPostOption)
+        public IActionResult Create([Bind("Text,Multimedia,Type,ProjectId")] ProjectPostOption projectPostOption)
         {
             if (ModelState.IsValid)
             {

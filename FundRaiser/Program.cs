@@ -22,8 +22,10 @@ namespace FundRaiser
             UserService user = new UserService(db);
             TransactionService transactionService = new TransactionService(db);
 
-            ProjectOption projectOption = projectService.GetProjectById(11);
-            Console.WriteLine(projectOption.UserId);
+            //ProjectOption projectOption = projectService.GetProjectById(11);
+            //Console.WriteLine(projectOption.UserId);
+
+            projectService.GetProjectsInvestedByUserId(1);
 
             /*ProjectOption projectOption = new ProjectOption()
             {
@@ -52,14 +54,14 @@ namespace FundRaiser
             /*ProjectPostOption projectPostOption = new ProjectPostOption()
             {
                 Text = "Texssfasgaaft",
-                Photo = "fa",
+                Multimedia = "fa",
                 ProjectId = 6
             };
             //projectPostService.CreateProjectPost(projectPostOption);  
             List<ProjectPost> projectPosts = projectPostService.GetAllProjectPosts(6);
             foreach (var projectPost in projectPosts)
             {
-                Console.WriteLine(projectPost.Photo);
+                Console.WriteLine(projectPost.Multimedia);
             }*/
 
 

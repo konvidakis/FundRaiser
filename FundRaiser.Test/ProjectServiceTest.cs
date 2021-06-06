@@ -38,10 +38,10 @@ namespace FundRaiser.Test
         [Fact]
         public void GetProjectsByCategoryTest()
         {
-            List<ProjectOption> projects = _projectService.GetProjectsByCategory(Category.Katigoria2);
+            List<ProjectOption> projects = _projectService.GetProjectsByCategory(Category.Tech);
             foreach (var project in projects)
             {
-                Assert.True(project.Category.Equals(Category.Katigoria2), "The projects returned all have the correct category");
+                Assert.True(project.Category.Equals(Category.Tech), "The projects returned all have the correct category");
             }
         }
 

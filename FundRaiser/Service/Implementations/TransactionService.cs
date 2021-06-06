@@ -38,6 +38,7 @@ namespace FundRaiser.Service.Implementations
                 User = user
             };
             _db.Transactions.Add(transaction);
+            project.AmountPledged = project.AmountPledged + transactionOptions.Amount;
             _db.SaveChanges();
             return new TransactionOption(transaction);
         }

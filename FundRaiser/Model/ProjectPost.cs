@@ -10,8 +10,7 @@ namespace FundRaiser.Model
     {
         public int ProjectPostId { get; set; }
         public string Text { get; set; }
-        public string Photo { get; set; }
-        public PostType Type { get; set; }
+        public string Multimedia { get; set; }
         public DateTime TimeStamp { get; set; }
         public Project Project { get; set; }
     }

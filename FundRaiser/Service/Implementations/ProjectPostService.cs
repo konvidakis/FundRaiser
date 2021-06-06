@@ -31,8 +31,7 @@ namespace FundRaiser.Service.Implementations
             ProjectPost projectPost = new()
             {
                 Text = projectPostOptions.Text,
-                Photo = projectPostOptions.Photo,
-                Type = projectPostOptions.Type,
+                Multimedia = projectPostOptions.Multimedia,
                 TimeStamp = DateTime.Now,
                 Project = project
             };
@@ -60,8 +59,7 @@ namespace FundRaiser.Service.Implementations
                 return null;
             }
             dbProjectPost.Text = projectPostOptions.Text;
-            dbProjectPost.Photo = projectPostOptions.Photo;
-            dbProjectPost.Type = projectPostOptions.Type;
+            dbProjectPost.Multimedia = projectPostOptions.Multimedia;
             dbProjectPost.TimeStamp = projectPostOptions.TimeStamp;
             _db.SaveChanges();
 

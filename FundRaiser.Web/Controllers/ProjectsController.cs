@@ -164,6 +164,11 @@ namespace FundRaiser.Web.Controllers
             return View(_projectService.GetProjectsInvestedByUserId(userId));
         }
 
+        public IActionResult ProjectsTrending()
+        {
+            return View(_projectService.GetProjectsTrending());
+        }
+
 
         public IActionResult Index(String searchString, String category)
         {

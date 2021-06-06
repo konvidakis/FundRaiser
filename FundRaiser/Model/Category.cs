@@ -9,7 +9,12 @@ namespace FundRaiser.Model
     public enum Category
     {
         //.... Add Categories
-        Katigoria,
-        Katigoria2
+        Art,
+        Environment,
+        Games,
+        Tech,
+        Music,
+        Other
+
     }
 }
