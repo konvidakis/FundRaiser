@@ -2,10 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Index">ProjectsIndex</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser" asp-route-userId="1">ProjectsCreatedByUser1</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser" asp-route-userId="1">ProjectsInvestedByUser1</a>
-</div>
+<form asp-action="Index">
+
+    <input name="email" required />
+    <input type="submit" value="Login" />
+
+</form>

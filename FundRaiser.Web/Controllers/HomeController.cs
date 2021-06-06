@@ -15,11 +15,13 @@ namespace FundRaiser.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUserService _userService;
+        private readonly IProjectService _projectService;
 
-        public HomeController(ILogger<HomeController> logger,IUserService userService)
+        public HomeController(ILogger<HomeController> logger,IUserService userService,IProjectService projectService)
         {
             _logger = logger;
             _userService = userService;
+            _projectService = projectService;
         }
 
         public IActionResult Index()
@@ -39,24 +41,19 @@ namespace FundRaiser.Web.Controllers
         }
         
         [HttpPost]
-        public IActionResult Login(string email)
+        public IActionResult Index(string email)
         {
             UserOption userOption=_userService.GetUserByEmail(email);
-            //if ... _projectService.GetProjectsByUserId() an ayti i lista den einai keni
-            if (email.Equals("Email"))
+            if (userOption == null)
             {
-                return View("Index"); //gurna sto View tou Creator me parametro userOption.userId
+                return View("Index");
             }
-            else
+            List<ProjectOption> projects =_projectService.GetProjectsCreatedByUserId(userOption.UserId);
+            if (projects.Count>0)
             {
-                return View(); //gurna sto View tou Funder me parametro userOption.userId
+                return RedirectToAction("HomeCreator", "User", new { @id = userOption.UserId });
             }
-            //an den vreis ton user useroption== null tote return View()
-        }
-
-        public IActionResult Login()
-        {
-            return View();
+            return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
         }
     }
 }

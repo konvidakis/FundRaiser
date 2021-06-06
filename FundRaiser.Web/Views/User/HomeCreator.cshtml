@@ -1,0 +1,15 @@
+﻿@model FundRaiser.Options.UserOption
+
+@{
+    ViewData["Title"] = "HomeCreator";
+}
+
+<h1>HomeCreator @Model.FirstName @Model.LastName </h1>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Index">See All Projects</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser" asp-route-userId="@Model.UserId">ProjectsCreatedByUser</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser" asp-route-userId="@Model.UserId">ProjectsInvestedByUser</a>
+</div>
+

@@ -11,13 +11,28 @@ namespace FundRaiser.Web.Controllers
 {
     public class UserController : Controller
     {
-        /*private readonly IUserService _service;
+        private readonly IUserService _service;
 
         public UserController(IUserService service)
         {
             _service = service;
         }
 
+        public IActionResult HomeCreator(int id)
+        {
+            ViewBag.UserId = id;
+            UserOption userOption=_service.GetUserById(id);
+            return View(userOption);
+        }
+
+        public IActionResult HomeFunder(int id)
+        {
+            ViewBag.UserId = id;
+            UserOption userOption = _service.GetUserById(id);
+            return View(userOption);
+        }
+
+        /*
         // GET: UserController
         public async Task<ActionResult> Index()
         {
