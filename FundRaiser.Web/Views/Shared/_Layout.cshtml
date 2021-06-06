@@ -1,5 +1,4 @@
-﻿@model FundRaiser.Options.UserOption
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,15 +25,15 @@
                             <a class="nav-link" asp-area="" asp-controller="CreateProject" asp-action="Create">Start a project</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Project" asp-action="Index">Explore projects</a>
+                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">Explore projects</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Personal Projects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser">My Projects</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser">My Investments</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser" asp-route-userId="@ViewBag.UserId">My Projects</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser" asp-route-userId="@ViewBag.UserId">My Investments</a>
                             </div>
                         </li>
                     </ul>
