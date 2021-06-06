@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FundRaiser.Model;
 
 namespace FundRaiser.Service
 {
-   public interface IUserService
+    public interface IUserService
     {
         public UserOption CreateUser(UserOption userOptions);
 
@@ -19,5 +20,9 @@ namespace FundRaiser.Service
 
         public UserOption GetUserByEmail(string email);
 
-    }
+        public List<UserOption> GetUsers();
+
+        public List<UserOption> UserToUserOptions(List<User> users);
+
+    };
 }

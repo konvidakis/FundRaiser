@@ -85,6 +85,18 @@ namespace FundRaiser.Service.Implementations
             _db.SaveChanges();
             return true;
         }
+
+        public List<UserOption> GetUsers()
+        {
+            return UserToUserOptions(_db.Users.ToList());
+        }
+
+        public List<UserOption> UserToUserOptions(List<User> users)
+        {
+            List<UserOption> usersOption = new List<UserOption>();
+            users.ForEach(user => usersOption.Add(new UserOption(user)));
+            return usersOption;
+        }
     }
 }
 
