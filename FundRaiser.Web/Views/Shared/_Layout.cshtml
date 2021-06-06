@@ -22,7 +22,7 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="CreateProject" asp-action="Create">Start a project</a>
+                            <a class="nav-link" asp-area="" asp-controller="CreateProject" asp-action="Create" asp-route-userId="@ViewBag.UserId">Start a project</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">Explore projects</a>

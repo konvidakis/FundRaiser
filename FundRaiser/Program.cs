@@ -25,8 +25,6 @@ namespace FundRaiser
             //ProjectOption projectOption = projectService.GetProjectById(11);
             //Console.WriteLine(projectOption.UserId);
 
-            projectService.GetProjectsInvestedByUserId(1);
-
             /*ProjectOption projectOption = new ProjectOption()
             {
                Title = "test12",

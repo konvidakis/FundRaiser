@@ -49,6 +49,7 @@ namespace FundRaiser.Web.Controllers
                 return View("Index");
             }
             List<ProjectOption> projects =_projectService.GetProjectsCreatedByUserId(userOption.UserId);
+            ViewBag.UserId = userOption.UserId;
             if (projects.Count>0)
             {
                 return RedirectToAction("HomeCreator", "User", new { @id = userOption.UserId });

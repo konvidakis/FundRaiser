@@ -21,8 +21,9 @@ namespace FundRaiser.Web.Controllers
         }
 
         // GET: Projects/Create
-        public IActionResult Create()
+        public IActionResult Create(int userId)
         {
+            ViewBag.UserId = userId;
             return View();
         }
 
@@ -38,7 +39,6 @@ namespace FundRaiser.Web.Controllers
                 return View(createProjectViewModel);
             }
 
-            createProjectViewModel.ProjectOption.UserId = 1;
             ProjectOption projectCreated= _projectService.CreateProject(createProjectViewModel.ProjectOption);
             foreach (var rewardOption in createProjectViewModel.RewardOptions)
             {

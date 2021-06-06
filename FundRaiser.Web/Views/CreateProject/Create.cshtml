@@ -1,4 +1,5 @@
 ﻿@using FundRaiser.Model
+@using FundRaiser.Options
 @model FundRaiser.Web.Models.CreateProjectViewModel
 
 @{
@@ -55,7 +56,11 @@
                 <input asp-for="ProjectOption.EndDate" class="form-control" required/>
                 <span asp-validation-for="ProjectOption.EndDate" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="ProjectOption.UserId" class="control-label"></label>
+                <input asp-for="ProjectOption.UserId" value="@ViewBag.UserId" class="form-control" required readonly/>
+                <span asp-validation-for="ProjectOption.UserId" class="text-danger"></span>
+            </div>
             Rewards
 
             <div class="form-group">
