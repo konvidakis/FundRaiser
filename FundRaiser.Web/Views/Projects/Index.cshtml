@@ -5,14 +5,32 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3 class="text-success">Available Projects</h3>
+<hr />
+<form asp-action="Index">
+    <div class="row m-2">
+        <div class="input-group col-lg-6 col-md-12 mb-2">
+            <label for="inputTitleSearch" class="m-2">Find projects by Title</label><br />
+            <input id="inputTitleSearch" type="text" name="searchString" class="form-control rounded" placeholder="Enter project title" aria-label="Search"
+                   aria-describedby="search-addon" />
+            <button type="submit" class="btn btn-outline-primary ml-1">search</button>
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+        <div class="input-group col-lg-6 col-md-12 mb-2">
+            <label for="inputCategory" class="m-2">Filter projects by Category</label><br />
+            <select id="inputCategory" asp-items="Html.GetEnumSelectList<Category>()" name="category" class="form-control rounded">
+                <option selected disabled>Please select category</option>
+            </select>
+            <button type="submit" value="Filter" class="btn btn-outline-primary ml-1">Filter</button>
+        </div>
+    </div>
+</form>
+
+
+<!-- old search
 <form asp-action="Index">
     <p>
-        Search by Title: <input type="text" name="searchString" />
+        Search Project by Title: <input type="text" name="searchString" />
     </p>
     <p>
         Select Category
@@ -21,80 +39,40 @@
         </select>
     </p>
     <input type="submit" value="Filter" />
-    
+
 </form>
+
 <form asp-action="ProjectsTrending">
     <input type="text" name="trending" value="trending" hidden readonly />
     <input type="submit" value="GetProjectsTrending" />
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Logo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SetGoal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountPledged)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Logo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeStamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SetGoal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AmountPledged)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    <a asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
-                </td>
-            </tr>
+     -->
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+
+    {
+    <div class="card m-3" style="width: 18rem;">
+    
+            <img class="card-img-top img-fluid img-thumbnail justify-content-center" style="height:200px; width:auto" src="@Html.DisplayFor(modelItem => item.Logo)" alt="Card image cap">
+            <div class="card-body">
+                <div style="height:38%">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text te">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-text te">Category: @Html.DisplayFor(modelItem => item.Category)</p>
+                </div>
+                <div style="height:2%">
+                    <hr class="m-1" />
+                </div>
+                <div style="height:48%">
+                    <p class="card-text te">Amount pledged: @Html.DisplayFor(modelItem => item.AmountPledged)</p>
+                    <p class="card-text te">Goal: @Html.DisplayFor(modelItem => item.SetGoal)</p>
+                    <p class="card-text te">End Date: @Html.DisplayFor(modelItem => item.EndDate)</p>
+                    <a class="btn btn-primary" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">View Details</a>
+                </div>
+            </div>
+        </div>
+
         }
-    </tbody>
-</table>
+    </div>
+<hr />
+<br />
