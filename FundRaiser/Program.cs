@@ -22,6 +22,14 @@ namespace FundRaiser
             UserService user = new UserService(db);
             TransactionService transactionService = new TransactionService(db);
 
+            List<ProjectOption> projects= projectService.GetProjectsInvestedByUserId(3);
+
+            foreach (var project in projects)
+            {
+                Console.WriteLine("--");
+                Console.WriteLine(project.ProjectId);
+            }
+
             //ProjectOption projectOption = projectService.GetProjectById(11);
             //Console.WriteLine(projectOption.UserId);
 

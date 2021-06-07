@@ -108,15 +108,20 @@ namespace FundRaiser.Service.Implementations
         public List<ProjectOption> GetProjectsInvestedByUserId(int userId)
         {
             //return _db.Transactions.Select(p => p.Project).Where(t => t.User.UserId == userId).ToList();
-            var x=_db.Transactions.Include(t => t.User).Where( t=> t.User.UserId == userId);
-            var y = x.Select(p => p.Project);
-            y = y.Include(t => t.User).Distinct();
-            return ProjectToProjectOptions(y.ToList());
-            //_db.Projects.Include(t => t.User)
-            //return ProjectToProjectOptions(_db.Transactions.Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList());
-            //return _db.Users.Find(userId).Transactions.Select(t => t.Project).Distinct().ToList();
 
-            //return ProjectToProjectOptions(_db.Transactions.Include(t => t.User).Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList());
+            /*var x=_db.Transactions.Include(t => t.User).Where( t=> t.User.UserId == userId);
+            var y = x.Select(p => p.Project);
+            y = y.Include(t => t.User).Distinct();*/
+            //return ProjectToProjectOptions(y.ToList());
+
+
+            //return ProjectToProjectOptions(_db.Transactions.Where(t => t.User.UserId == userId).Select(p => p.Project).Distinct().ToList());
+            
+            return ProjectToProjectOptions(_db.Transactions.Include(t => t.User)
+                .Where(t => t.User.UserId == userId)
+                .Include(t => t.Project.User)
+                .Select(p => p.Project)
+                .Distinct().ToList());
 
         }
 
