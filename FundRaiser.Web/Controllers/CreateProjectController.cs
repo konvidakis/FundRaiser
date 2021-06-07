@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FundRaiser.Options;
 using FundRaiser.Service;
 using FundRaiser.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FundRaiser.Web.Controllers
@@ -21,9 +22,8 @@ namespace FundRaiser.Web.Controllers
         }
 
         // GET: Projects/Create
-        public IActionResult Create(int userId)
+        public IActionResult Create()
         {
-            ViewBag.UserId = userId;
             return View();
         }
 
@@ -38,7 +38,7 @@ namespace FundRaiser.Web.Controllers
             {
                 return View(createProjectViewModel);
             }
-
+            createProjectViewModel.ProjectOption.UserId= Int32.Parse(HttpContext.Session.GetString("CurrentUser"));
             ProjectOption projectCreated= _projectService.CreateProject(createProjectViewModel.ProjectOption);
             foreach (var rewardOption in createProjectViewModel.RewardOptions)
             {

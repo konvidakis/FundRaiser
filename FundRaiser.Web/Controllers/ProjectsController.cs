@@ -10,6 +10,7 @@ using FundRaiser.Model;
 using FundRaiser.Options;
 using FundRaiser.Service;
 using FundRaiser.Service.Implementations;
+using Microsoft.AspNetCore.Http;
 
 namespace FundRaiser.Web.Controllers
 {
@@ -27,6 +28,7 @@ namespace FundRaiser.Web.Controllers
             return View(projectOption);
         }
 
+        /*
         // GET: Projects
         //public  IActionResult Index()
         //{
@@ -157,16 +159,16 @@ namespace FundRaiser.Web.Controllers
                 return false;
             }
             return true;
+        }*/
+
+        public IActionResult ProjectsCreatedByUser()
+        {
+            return View(_projectService.GetProjectsCreatedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
         }
 
-        public IActionResult ProjectsCreatedByUser(int userId)
+        public IActionResult ProjectsInvestedByUser()
         {
-            return View(_projectService.GetProjectsCreatedByUserId(userId));
-        }
-
-        public IActionResult ProjectsInvestedByUser(int userId)
-        {
-            return View(_projectService.GetProjectsInvestedByUserId(userId));
+            return View(_projectService.GetProjectsInvestedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
         }
 
         public IActionResult ProjectsTrending()

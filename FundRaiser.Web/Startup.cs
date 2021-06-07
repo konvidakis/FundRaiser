@@ -33,6 +33,15 @@ namespace FundRaiser.Web
             services.AddScoped<ITransactionService>(r => new TransactionService(new FundRaiserDbContext()));
             services.AddScoped<IUserService>(r => new UserService(new FundRaiserDbContext()));
             //services.AddScoped<IProjectService, ProjectService>();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(600);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,9 @@ namespace FundRaiser.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //2 added for session management
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

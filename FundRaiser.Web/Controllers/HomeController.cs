@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FundRaiser.Options;
 using FundRaiser.Service;
+using Microsoft.AspNetCore.Http;
 
 namespace FundRaiser.Web.Controllers
 {
@@ -16,6 +17,8 @@ namespace FundRaiser.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUserService _userService;
         private readonly IProjectService _projectService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private ISession _session => _httpContextAccessor.HttpContext.Session;
 
         public HomeController(ILogger<HomeController> logger,IUserService userService,IProjectService projectService)
         {
@@ -48,13 +51,18 @@ namespace FundRaiser.Web.Controllers
             {
                 return View("Index");
             }
+            //edw vale session
+            HttpContext.Session.SetString("CurrentUser",userOption.UserId+"");
+            //auton ton elegxo krata ton gia tin projectsCreatedbyuser
             List<ProjectOption> projects =_projectService.GetProjectsCreatedByUserId(userOption.UserId);
-            ViewBag.UserId = userOption.UserId;
+            //ViewBag.UserId = userOption.UserId;
             if (projects.Count>0)
             {
                 return RedirectToAction("HomeCreator", "Projects");
             }
-            return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
+            return RedirectToAction("HomeCreator", "Projects");
+            //return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
         }
+
     }
 }

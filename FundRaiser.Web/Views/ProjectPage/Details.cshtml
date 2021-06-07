@@ -68,7 +68,7 @@
 
     <div>
         Choose a Reward to Fund this Project
-        <form asp-action="FundProject" asp-route-projectId="@Model.ProjectOption.ProjectId" asp-route-userId="@Model.ProjectOption.UserId">
+        <form asp-action="FundProject" asp-route-projectId="@Model.ProjectOption.ProjectId">
             <select name="rewardId">
                 @foreach (var reward in Model.RewardOptions)
                 {

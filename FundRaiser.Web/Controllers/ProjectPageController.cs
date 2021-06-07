@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FundRaiser.Options;
 using FundRaiser.Service;
 using FundRaiser.Web.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace FundRaiser.Web.Controllers
 {
@@ -39,7 +40,7 @@ namespace FundRaiser.Web.Controllers
             return View(projectPage);
         }
 
-        public IActionResult FundProject(int rewardId, int projectId, decimal amount, int userId)
+        public IActionResult FundProject(int rewardId, int projectId, decimal amount)
         {
             RewardOption rewardOption = _rewardService.GetRewardById(rewardId);
             TransactionOption transactionOption = new TransactionOption()
@@ -47,7 +48,7 @@ namespace FundRaiser.Web.Controllers
                 Amount = rewardOption.AmountRequired,
                 RewardId = rewardId,
                 ProjectId = projectId,
-                UserId = userId
+                UserId = Int32.Parse(HttpContext.Session.GetString("CurrentUser"))
             };
             _transactionService.CreateTransaction(transactionOption);
 

@@ -22,7 +22,7 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="CreateProject" asp-action="Create" asp-route-userId="@ViewBag.UserId">Start a project</a>
+                            <a class="nav-link" asp-area="" asp-controller="CreateProject" asp-action="Create">Start a project</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">Explore projects</a>
@@ -32,8 +32,8 @@
                                 Personal Projects
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser" asp-route-userId="@ViewBag.UserId">My Projects</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser" asp-route-userId="@ViewBag.UserId">My Investments</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsCreatedByUser">My Projects</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Projects" asp-action="ProjectsInvestedByUser">My Investments</a>
                             </div>
                         </li>
                     </ul>
