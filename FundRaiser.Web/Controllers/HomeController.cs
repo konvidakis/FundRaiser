@@ -52,7 +52,7 @@ namespace FundRaiser.Web.Controllers
             ViewBag.UserId = userOption.UserId;
             if (projects.Count>0)
             {
-                return RedirectToAction("HomeCreator", "User", new { @id = userOption.UserId });
+                return RedirectToAction("HomeCreator", "Projects");
             }
             return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
         }
