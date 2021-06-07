@@ -6,100 +6,134 @@
     ViewData["Title"] = "View";
 }
 
-<h1>View</h1>
-
-<h4>Project</h4>
+<h3 class="text-info">Create a Project</h3>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-12">
         <form asp-action="Create">
-            <div  class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.Category" class="control-label"></label>
-                <select asp-for="ProjectOption.Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control" required>
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="ProjectOption.Category" class="text-danger"></span>
+            <div class="text-danger"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.Category" class="control-label"></label>
+                        <select asp-for="ProjectOption.Category" asp-items="Html.GetEnumSelectList<Category>()" class="form-control" required>
+                            <option selected="selected" value="" disabled>Please select</option>
+                        </select>
+                        <span asp-validation-for="ProjectOption.Category" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.Title" class="control-label">Project Title:</label>
+                        <input asp-for="ProjectOption.Title" class="form-control" required />
+                        <span asp-validation-for="ProjectOption.Title" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.Title" class="control-label"></label>
-                <input asp-for="ProjectOption.Title" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.Title" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.Logo" class="control-label">Project Image (Insert Image Url):</label>
+                        <input asp-for="ProjectOption.Logo" class="form-control" required />
+                        <span asp-validation-for="ProjectOption.Logo" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.Logo" class="control-label"></label>
-                <input asp-for="ProjectOption.Logo" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.Logo" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.Description" class="control-label"></label>
+                        <textarea asp-for="ProjectOption.Description" class="form-control" required></textarea>
+                        <span asp-validation-for="ProjectOption.Description" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.Description" class="control-label"></label>
-                <textarea asp-for="ProjectOption.Description" class="form-control" required></textarea>
-                <span asp-validation-for="ProjectOption.Description" class="text-danger"></span>
+            <div class="row">
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.SetGoal" class="control-label"></label>
+                        <input type="number" asp-for="ProjectOption.SetGoal" class="form-control" required />
+                        <span asp-validation-for="ProjectOption.SetGoal" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.SetGoal" class="control-label"></label>
-                <input asp-for="ProjectOption.SetGoal" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.SetGoal" class="text-danger"></span>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.StartDate" class="control-label"></label>
+                        <input asp-for="ProjectOption.StartDate" class="form-control" required />
+                        <span asp-validation-for="ProjectOption.StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label asp-for="ProjectOption.EndDate" class="control-label"></label>
+                        <input asp-for="ProjectOption.EndDate" class="form-control" required />
+                        <span asp-validation-for="ProjectOption.EndDate" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.AmountPledged" class="control-label"></label>
-                <input asp-for="ProjectOption.AmountPledged" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.AmountPledged" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.StartDate" class="control-label"></label>
-                <input asp-for="ProjectOption.StartDate" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProjectOption.EndDate" class="control-label"></label>
-                <input asp-for="ProjectOption.EndDate" class="form-control" required/>
-                <span asp-validation-for="ProjectOption.EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group d-none">
                 <label asp-for="ProjectOption.UserId" class="control-label"></label>
-                <input asp-for="ProjectOption.UserId" value="@ViewBag.UserId" class="form-control" required readonly/>
+                <input asp-for="ProjectOption.UserId" value="@ViewBag.UserId" class="form-control" required readonly />
                 <span asp-validation-for="ProjectOption.UserId" class="text-danger"></span>
             </div>
-            Rewards
-
-            <div class="form-group">
-                <label asp-for="RewardOptions[0].Title" class="control-label"></label>
-                <input asp-for="RewardOptions[0].Title" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[0].Title" class="text-danger"></span>
+            <hr />
+            <h3 class="text-info">Please add project rewards</h3>
+            <br />
+            <h5 class="text-muted">1st Reward</h5>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[0].Title" class="control-label"></label>
+                        <input asp-for="RewardOptions[0].Title" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[0].Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[0].AmountRequired" class="control-label"></label>
+                        <input type="number" asp-for="RewardOptions[0].AmountRequired" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[0].AmountRequired" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="RewardOptions[0].Description" class="control-label"></label>
-                <input asp-for="RewardOptions[0].Description" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[0].Description" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[0].Description" class="control-label"></label>
+                        <input asp-for="RewardOptions[0].Description" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[0].Description" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="RewardOptions[0].AmountRequired" class="control-label"></label>
-                <input asp-for="RewardOptions[0].AmountRequired" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[0].AmountRequired" class="text-danger"></span>
+            <br />
+            <h5 class="text-muted">2nd Reward</h5>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[1].Title" class="control-label"></label>
+                        <input asp-for="RewardOptions[1].Title" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[1].Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[1].AmountRequired" class="control-label"></label>
+                        <input type="number" asp-for="RewardOptions[1].AmountRequired" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[1].AmountRequired" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="RewardOptions[1].Title" class="control-label"></label>
-                <input asp-for="RewardOptions[1].Title" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[1].Title" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="RewardOptions[1].Description" class="control-label"></label>
+                        <input asp-for="RewardOptions[1].Description" class="form-control" required />
+                        <span asp-validation-for="RewardOptions[1].Description" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="RewardOptions[1].Description" class="control-label"></label>
-                <input asp-for="RewardOptions[1].Description" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[1].Description" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="RewardOptions[1].AmountRequired" class="control-label"></label>
-                <input asp-for="RewardOptions[1].AmountRequired" class="form-control" required/>
-                <span asp-validation-for="RewardOptions[1].AmountRequired" class="text-danger"></span>
-            </div>
-            
-
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
