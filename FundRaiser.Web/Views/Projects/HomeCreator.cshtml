@@ -4,76 +4,30 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    img {
+        height :10em;
+        width : 40em;
+    }
+</style>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Logo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SetGoal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountPledged)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Logo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeStamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SetGoal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AmountPledged)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    <a asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<br />
+<h3 class="text-success">Trending Projects</h3>
+<hr />
+<div class="row justify-content-center">
+    @foreach (var item in Model)
 
+    {
+            <div class="card m-3 justify-content-center" style="width: 18rem;">
+                <img class="card-img-top img-fluid img-thumbnail justify-content-center" src="@Html.DisplayFor(modelItem => item.Logo)" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text te">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <a class="btn btn-primary" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectId">View Details</a>
+                </div>
+            </div>
+        
+    }
+</div>
+<hr /><br />
+            
