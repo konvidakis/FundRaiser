@@ -18,12 +18,7 @@ namespace FundRaiser.Web.Controllers
             _service = service;
         }
 
-        public IActionResult HomeCreator(int id)
-        {
-            ViewBag.UserId = id;
-            UserOption userOption=_service.GetUserById(id);
-            return View(userOption);
-        }
+       
 
         public IActionResult HomeFunder(int id)
         {

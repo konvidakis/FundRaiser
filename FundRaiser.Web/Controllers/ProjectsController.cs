@@ -21,6 +21,11 @@ namespace FundRaiser.Web.Controllers
         {
             _projectService = projectService;
         }
+        public IActionResult HomeCreator()
+        {
+            List <ProjectOption> projectOption = _projectService.GetProjectsTrending();
+            return View(projectOption);
+        }
 
         // GET: Projects
         //public  IActionResult Index()
