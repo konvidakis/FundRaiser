@@ -155,7 +155,7 @@ namespace FundRaiser.Service.Implementations
         public List<ProjectOption> GetProjectsTrending()
         {
             //return _db.Transactions
-            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).ToList());
+            return ProjectToProjectOptions(_db.Projects.Include(t => t.User).OrderByDescending(p => p.Transactions.Count()).Take(3).ToList());
         }
 
         public List<ProjectOption> ProjectToProjectOptions(List<Project> projects)
