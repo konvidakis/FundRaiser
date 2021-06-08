@@ -26,12 +26,7 @@
                 <div style="height:50%">
                     <p class="card-text te">Amount pledged: @Html.DisplayFor(modelItem => item.ProjectOption.AmountPledged)</p>
                     <p class="card-text te">Goal: @Html.DisplayFor(modelItem => item.ProjectOption.SetGoal)</p>
-                    <p class="card-text te">Progress: @Html.DisplayFor(modelItem => item.FinancialProgress) </p>
-                    <div class="progress mb-2">
-                        <div class="progress-bar" role="progressbar" style="width: @Html.DisplayFor(modelItem => item.FinancialProgress) %; max-width:100%"
-                             aria-valuenow="@Html.DisplayFor(modelItem => item.FinancialProgress)" aria-valuemin="0" aria-valuemax="100">
-                        @Html.DisplayFor(modelItem => item.FinancialProgress)%</div>
-                    </div>
+                    <p class="card-text te">Progress: @Html.DisplayFor(modelItem => item.FinancialProgress) %</p>
                     <p class="card-text te">End Date: @Html.DisplayFor(modelItem => item.ProjectOption.EndDate)</p>
                     <a class="btn btn-primary" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectOption.ProjectId">View Details</a>
                 </div>
