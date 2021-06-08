@@ -39,13 +39,8 @@ namespace FundRaiser.Web.Controllers
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", uniqueFileName);
 
                 projectPostWithImage.ProjectPostImage.CopyTo(new FileStream(filePath, FileMode.Create));
-
-
                 projectPostWithImage.ProjectPostOption.Multimedia = uniqueFileName;
-
-
             }
-            //vale to 
             _projectPostService.CreateProjectPost(projectPostWithImage.ProjectPostOption);
             return RedirectToAction("Index", "Projects");
             

@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-lg-12">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div class="text-danger"></div>
             <div class="row">
                 <div class="col">
@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label asp-for="ProjectOption.Logo" class="control-label">Project Image (Insert Image Url):</label>
-                        <input asp-for="ProjectOption.Logo" class="form-control" required />
-                        <span asp-validation-for="ProjectOption.Logo" class="text-danger"></span>
+                        <label asp-for="ProjectImage" class="control-label">Project Image (Insert Image Url):</label>
+                        <input asp-for="ProjectImage" class="form-control" id="ProjectPostImage" />
+                        <span class="text-danger"></span>
                     </div>
                 </div>
             </div>
