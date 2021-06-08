@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FundRaiser.Web.Models.ProjectsInvestedViewModel>
+
+@{
+    ViewData["Title"] = "Projects Invested By User";
+}
+
+<h1>Rewards Received By User</h1>
+
+-->
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+
+    {
+    <div class="card m-3" style="width: 18rem;">
+
+        You will get a reward with title "@item.RewardOption.Title" because you contributed with "@item.RewardOption.AmountRequired" €
+        <img class="card-img-top img-fluid img-thumbnail justify-content-center" style="height:200px; width:auto" src="@Html.DisplayFor(modelItem => item.ProjectOption.Logo)" alt="Card image cap">
+        <div class="card-body">
+            <div style="height:38%">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProjectOption.Title)</h5>
+                <p class="card-text te">@Html.DisplayFor(modelItem => item.ProjectOption.Description)</p>
+                <p class="card-text te">Category: @Html.DisplayFor(modelItem => item.ProjectOption.Category)</p>
+            </div>
+            <div style="height:2%">
+                <hr class="m-1" />
+            </div>
+            <div style="height:48%">
+                <p class="card-text te">Amount pledged: @Html.DisplayFor(modelItem => item.ProjectOption.AmountPledged)</p>
+                <p class="card-text te">Goal: @Html.DisplayFor(modelItem => item.ProjectOption.SetGoal)</p>
+                <p class="card-text te">End Date: @Html.DisplayFor(modelItem => item.ProjectOption.EndDate)</p>
+                <a class="btn btn-primary" asp-controller="ProjectPage" asp-action="Details" asp-route-id="@item.ProjectOption.ProjectId">View Details</a>
+            </div>
+        </div>
+    </div>
+
+    }
+</div>
+

@@ -83,7 +83,7 @@ namespace FundRaiser.Service.Implementations
 
         public List<RewardOption> GetRewardsByUserId(int userId)
         {
-            return RewardToRewardOptions(_db.Transactions.Include(p => p.Project).Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList());
+            return RewardToRewardOptions(_db.Transactions.Include(p => p.Project).Include(p=>p.Reward.Project).Where(t => t.User.UserId == userId).Select(r => r.Reward).Distinct().ToList());
         }
 
         public List<RewardOption> RewardToRewardOptions(List<Reward> rewards)
