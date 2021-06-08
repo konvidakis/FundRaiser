@@ -22,7 +22,7 @@ namespace FundRaiser.Web.Controllers
         {
             _projectService = projectService;
         }
-        public IActionResult HomeCreator()
+        public IActionResult HomePage()
         {
             List <ProjectOption> projectOption = _projectService.GetProjectsTrending();
             return View(projectOption);
@@ -171,10 +171,10 @@ namespace FundRaiser.Web.Controllers
             return View(_projectService.GetProjectsInvestedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
         }
 
-        public IActionResult ProjectsTrending()
+        /*public IActionResult ProjectsTrending()
         {
             return View(_projectService.GetProjectsTrending());
-        }
+        }*/
 
 
         public IActionResult Index(String searchString, String category)

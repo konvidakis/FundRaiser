@@ -32,11 +32,6 @@ namespace FundRaiser.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -58,9 +53,9 @@ namespace FundRaiser.Web.Controllers
             //ViewBag.UserId = userOption.UserId;
             if (projects.Count>0)
             {
-                return RedirectToAction("HomeCreator", "Projects");
+                return RedirectToAction("HomePage", "Projects");
             }
-            return RedirectToAction("HomeCreator", "Projects");
+            return RedirectToAction("HomePage", "Projects");
             //return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
         }
 
