@@ -23,9 +23,9 @@
             <div class="form-group">
                 <label asp-for="ProjectPostImage" class="control-label">Upload image(Optional)</label>
                 <input asp-for="ProjectPostImage" class="form-control" id="ProjectPostImage" />
-                <span asp-validation-for="ProjectPostImage" class="text-danger"></span>
+                <span class="text-danger"></span>
             </div>
-            <input asp-for="ProjectPostOption.ProjectId" type="file" class="form-control-file m-1" value="@ViewBag.ProjectId" readonly hidden>
+            <input asp-for="ProjectPostOption.ProjectId" class="form-control" value="@ViewBag.ProjectId" readonly>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

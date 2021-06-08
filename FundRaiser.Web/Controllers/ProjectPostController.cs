@@ -31,25 +31,25 @@ namespace FundRaiser.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([FromForm]ProjectPostWithImageViewModel projectPostWithImage)
         {
-
-            // do other validations on your model as needed
-            var x=projectPostWithImage.ProjectPostImage.FileName;
-            var uniqueFileName = GetUniqueFileName(projectPostWithImage.ProjectPostImage.FileName);
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", uniqueFileName);
-
-            projectPostWithImage.ProjectPostImage.CopyTo(new FileStream(filePath, FileMode.Create));
-
-
-            projectPostWithImage.ProjectPostOption.Multimedia = uniqueFileName;
-
-            if (ModelState.IsValid)
+            if (projectPostWithImage.ProjectPostImage != null)
             {
-                //vale to 
-                _projectPostService.CreateProjectPost(projectPostWithImage.ProjectPostOption);
-                return RedirectToAction("Index", "Projects");
-            }
+                // do other validations on your model as needed
+                var x = projectPostWithImage.ProjectPostImage.FileName;
+                var uniqueFileName = GetUniqueFileName(projectPostWithImage.ProjectPostImage.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", uniqueFileName);
 
-            return View(projectPostWithImage);
+                projectPostWithImage.ProjectPostImage.CopyTo(new FileStream(filePath, FileMode.Create));
+
+
+                projectPostWithImage.ProjectPostOption.Multimedia = uniqueFileName;
+
+
+            }
+            //vale to 
+            _projectPostService.CreateProjectPost(projectPostWithImage.ProjectPostOption);
+            return RedirectToAction("Index", "Projects");
+            
+            //return View(projectPostWithImage);
         }
 
         private static string GetUniqueFileName(string fileName)
