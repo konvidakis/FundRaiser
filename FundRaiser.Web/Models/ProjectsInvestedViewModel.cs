@@ -10,5 +10,6 @@ namespace FundRaiser.Web.Models
     {
         public ProjectOption ProjectOption { get; set; }
         public RewardOption RewardOption { get; set; }
+        public decimal? FinancialProgress { get; set; }
     }
 }

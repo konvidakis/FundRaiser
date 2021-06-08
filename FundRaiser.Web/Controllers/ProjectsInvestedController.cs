@@ -31,6 +31,7 @@ namespace FundRaiser.Web.Controllers
                 ProjectsInvestedViewModel projectInvested = new ProjectsInvestedViewModel();
                 projectInvested.RewardOption = reward;
                 projectInvested.ProjectOption = _projectService.GetProjectById(reward.ProjectId);
+                projectInvested.FinancialProgress = _projectService.GetFinancialProgress(reward.ProjectId);
                 projectsInvested.Add(projectInvested);
             }
             return View(projectsInvested);
