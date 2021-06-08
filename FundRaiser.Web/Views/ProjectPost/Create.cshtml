@@ -1,5 +1,4 @@
-﻿@using FundRaiser.Model
-@model FundRaiser.Options.ProjectPostOption
+﻿@model FundRaiser.Web.Models.ProjectPostWithImageViewModel
     ViewData["Title"] = "Create";
 }
 
@@ -9,27 +8,27 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
+                <label asp-for="ProjectPostOption.Text" class="control-label"></label>
+                <input asp-for="ProjectPostOption.Text" class="form-control" />
+                <span asp-validation-for="ProjectPostOption.Text" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Multimedia" class="control-label"></label>
                 <input asp-for="Multimedia" class="form-control" />
                 <span asp-validation-for="Multimedia" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ProjectPostImage" class="control-label"></label>
+                <input asp-for="ProjectPostImage" class="form-control" id="ProjectPostImage" />
+                <span asp-validation-for="ProjectPostImage" class="text-danger"></span>
             </div>
-            <input asp-for="ProjectId" class="form-control" value="@ViewBag.ProjectId" readonly hidden>
+            <input asp-for="ProjectPostOption.ProjectId" class="form-control" value="@ViewBag.ProjectId" readonly hidden>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

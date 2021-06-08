@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FundRaiser.Options;
 using FundRaiser.Service;
+using FundRaiser.Web.Models;
 
 namespace FundRaiser.Web.Controllers
 {
@@ -27,14 +29,36 @@ namespace FundRaiser.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Text,Multimedia,Type,ProjectId")] ProjectPostOption projectPostOption)
+        public IActionResult Create([FromForm]ProjectPostWithImageViewModel projectPostWithImage)
         {
+
+            // do other validations on your model as needed
+            var x=projectPostWithImage.ProjectPostImage.FileName;
+            var uniqueFileName = GetUniqueFileName(projectPostWithImage.ProjectPostImage.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", uniqueFileName);
+
+            projectPostWithImage.ProjectPostImage.CopyTo(new FileStream(filePath, FileMode.Create));
+
+
+            projectPostWithImage.ProjectPostOption.Multimedia = uniqueFileName;
+
             if (ModelState.IsValid)
             {
-                _projectPostService.CreateProjectPost(projectPostOption);
+                //vale to 
+                _projectPostService.CreateProjectPost(projectPostWithImage.ProjectPostOption);
                 return RedirectToAction("Index", "Projects");
             }
-            return View(projectPostOption);
+
+            return View(projectPostWithImage);
+        }
+
+        private static string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                   + "_"
+                   + Guid.NewGuid().ToString().Substring(0, 4)
+                   + Path.GetExtension(fileName);
         }
     }
 }
