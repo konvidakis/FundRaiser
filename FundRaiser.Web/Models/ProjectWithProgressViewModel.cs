@@ -9,6 +9,6 @@ namespace FundRaiser.Web.Models
     public class ProjectWithProgressViewModel
     {
         public ProjectOption ProjectOption { get; set; }
-        public decimal FinancialProgress { get; set; }
+        public decimal? FinancialProgress { get; set; }
     }
 }
