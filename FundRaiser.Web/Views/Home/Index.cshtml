@@ -16,9 +16,24 @@
             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
         </div>
         <br>
-        <button type="submit" value="Login" class="w-25 btn btn-lg btn-primary">Sign in</button>
+        <button type="submit" value="Login" class="w-25 btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Sign in</button>
 
     </form>
 
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Succesfully logged in.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
     </div>
+</div>
+
+
 
