@@ -60,11 +60,26 @@
                     <option value="@reward.RewardId">@reward.Title - @reward.AmountRequired $</option>
                 }
             </select>
-            <input class="btn btn-primary m-2 float-lg-right" type="submit" value="Fund!" />
+            <input class="btn btn-primary m-2 float-lg-right" type="submit" value="Fund!" data-toggle="modal" data-target="#FundingModal"/>
         </form>
     </div>
 </div>
 <hr />
+
+<div class="modal" tabindex="-1" role="dialog" id="FundingModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <p>Funded successfully.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <h3 class="text-primary">Status updates</h3>
 <hr />
@@ -83,8 +98,8 @@
                     <div class="col col-5">
                         <p>@post.Text</p>
                     </div>
-                    </div>
                 </div>
+            </div>
         }
         else
         {
@@ -98,130 +113,130 @@
         }
         i++;
         if (i == 5) { break; }
-        }
-        }
+    }
+}
 
 
 
-                <!--
-                <div>
-                    <h4>Project</h4>
-                    <hr />
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.Category)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.Category)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.Title)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.Title)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.Logo)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.Logo)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.Description)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.Description)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.SetGoal)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.SetGoal)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.AmountPledged)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.AmountPledged)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.StartDate)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.StartDate)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ProjectOption.EndDate)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ProjectOption.EndDate)
-                        </dd>
-                    </dl>
-                </div>
+<!--
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.Logo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.Logo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.SetGoal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.SetGoal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.AmountPledged)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.AmountPledged)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectOption.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectOption.EndDate)
+        </dd>
+    </dl>
+</div>
 
 
 
-                <div>
-                    Choose a Reward to Fund this Project
-                    <form asp-action="FundProject" asp-route-projectId="@Model.ProjectOption.ProjectId">
-                        <select name="rewardId">
-                            @foreach (var reward in Model.RewardOptions)
-                            {
-                                <option value="@reward.RewardId">@reward.Title</option>
-                            }
-                        </select>
-                        <input type="submit" value="Fund!" />
+<div>
+    Choose a Reward to Fund this Project
+    <form asp-action="FundProject" asp-route-projectId="@Model.ProjectOption.ProjectId">
+        <select name="rewardId">
+            @foreach (var reward in Model.RewardOptions)
+            {
+                <option value="@reward.RewardId">@reward.Title</option>
+            }
+        </select>
+        <input type="submit" value="Fund!" />
 
-                    </form>
-                </div>
-                <br />-->
-                <!-- Rewards table
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <h2>Rewards</h2>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Amount Required</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var reward in Model.RewardOptions)
-                            {
-                                <tr>
-                                    <td>@reward.Title</td>
-                                    <td>@reward.Description</td>
-                                    <td>@reward.AmountRequired</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <br />
-                </div>
-                    -->
-                <!-- Rewards table
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <h2>Project Posts</h2>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Multimedia</th>
-                                    <th scope="col">Text</th>
-                                    <th scope="col">TimeStamp</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var projectPost in Model.ProjectPostOptions)
-                                {
-                                    <tr>
-                                        <td><img src="/img/@Html.DisplayFor(modelItem => projectPost.Multimedia)" width="100" height="100" /></td>
-                                        <td>@projectPost.Text</td>
-                                        <td>@projectPost.TimeStamp</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <br />
-                    </div>
-                </div>-->
+    </form>
+</div>
+<br />-->
+<!-- Rewards table
+<div class="col-lg-6 col-md-12 col-sm-12">
+    <h2>Rewards</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reward in Model.RewardOptions)
+            {
+                <tr>
+                    <td>@reward.Title</td>
+                    <td>@reward.Description</td>
+                    <td>@reward.AmountRequired</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+</div>
+    -->
+<!-- Rewards table
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <h2>Project Posts</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Multimedia</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">TimeStamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var projectPost in Model.ProjectPostOptions)
+                {
+                    <tr>
+                        <td><img src="/img/@Html.DisplayFor(modelItem => projectPost.Multimedia)" width="100" height="100" /></td>
+                        <td>@projectPost.Text</td>
+                        <td>@projectPost.TimeStamp</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>-->

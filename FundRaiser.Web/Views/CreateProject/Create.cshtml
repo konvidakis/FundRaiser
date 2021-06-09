@@ -131,7 +131,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" data-toggle="modal" data-target="#ProjectModal" />
             </div>
         </form>
     </div>
@@ -144,3 +144,20 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<div class="modal" tabindex="-1" role="dialog" id="ProjectModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <div class="modal-body">
+                <p>Project successfully created.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
