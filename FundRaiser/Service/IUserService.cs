@@ -23,6 +23,5 @@ namespace FundRaiser.Service
         public List<UserOption> GetUsers();
 
         public List<UserOption> UserToUserOptions(List<User> users);
-
-    };
+    }
 }

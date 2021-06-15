@@ -5,6 +5,7 @@ using FundRaiser.Model;
 using FundRaiser.Options;
 using FundRaiser.Service;
 
+// have not implemented the front-end. This is a demo for testing APIs functionality
 namespace FundRaiser.Web.Controllers
 {
     [Route("api/[controller]")]

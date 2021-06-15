@@ -13,22 +13,22 @@ namespace FundRaiser
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("manual testing!");
 
-            using FundRaiserDbContext db = new();
+            /*using FundRaiserDbContext db = new();
             ProjectService projectService = new ProjectService(db);
             ProjectPostService projectPostService = new ProjectPostService(db);
             RewardService rewardService = new RewardService(db);
             UserService user = new UserService(db);
-            TransactionService transactionService = new TransactionService(db);
+            TransactionService transactionService = new TransactionService(db);*/
 
-            List<ProjectOption> projects= projectService.GetProjectsInvestedByUserId(3);
+            /*List<ProjectOption> projects= projectService.GetProjectsInvestedByUserId(3);
 
             foreach (var project in projects)
             {
                 Console.WriteLine("--");
                 Console.WriteLine(project.ProjectId);
-            }
+            }*/
 
             //ProjectOption projectOption = projectService.GetProjectById(11);
             //Console.WriteLine(projectOption.UserId);
@@ -69,8 +69,6 @@ namespace FundRaiser
             {
                 Console.WriteLine(projectPost.Multimedia);
             }*/
-
-
 
             /*List<Reward> rewards = rewardService.GetRewardsByUserId(1);
             foreach (var reward in rewards)

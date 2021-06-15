@@ -46,18 +46,14 @@ namespace FundRaiser.Web.Controllers
             {
                 return View("Index");
             }
-            //edw vale session
             HttpContext.Session.SetString("CurrentUser",userOption.UserId+"");
-            //auton ton elegxo krata ton gia tin projectsCreatedbyuser
-            List<ProjectOption> projects =_projectService.GetProjectsCreatedByUserId(userOption.UserId);
-            //ViewBag.UserId = userOption.UserId;
+            //use this check in the future if we want to make a difference from user with projects created and user with 0 projects.
+            /*List<ProjectOption> projects =_projectService.GetProjectsCreatedByUserId(userOption.UserId);
             if (projects.Count>0)
             {
                 return RedirectToAction("HomePage", "Projects");
-            }
+            }*/
             return RedirectToAction("HomePage", "Projects");
-            //return RedirectToAction("HomeFunder", "User", new { @id = userOption.UserId });
         }
-
     }
 }

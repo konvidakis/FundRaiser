@@ -21,7 +21,5 @@ namespace FundRaiser.Service
         public List<RewardOption> GetRewardsByProjectId(int projectId);
 
         public List<RewardOption> GetRewardsByUserId(int userId);
-
-        public List<RewardOption> RewardToRewardOptions(List<Reward> rewards);
     }
 }

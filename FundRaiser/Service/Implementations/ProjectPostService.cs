@@ -80,10 +80,12 @@ namespace FundRaiser.Service.Implementations
 
         public List<ProjectPostOption> GetAllProjectPosts(int projectId)
         {
-            return ProjectPostToProjectPostOptions(_db.ProjectPosts.Include(p => p.Project).Where(p => p.Project.ProjectId == projectId).ToList());
+            return ProjectPostToProjectPostOptions(_db.ProjectPosts.Include(p => p.Project)
+                .Where(p => p.Project.ProjectId == projectId)
+                .ToList());
         }
 
-        public List<ProjectPostOption> ProjectPostToProjectPostOptions(List<ProjectPost> projectPosts)
+        private List<ProjectPostOption> ProjectPostToProjectPostOptions(List<ProjectPost> projectPosts)
         {
             List<ProjectPostOption> projectPostOptions = new List<ProjectPostOption>();
             projectPosts.ForEach(projectPost => projectPostOptions.Add(new ProjectPostOption(projectPost)));

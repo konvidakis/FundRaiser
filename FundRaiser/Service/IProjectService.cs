@@ -28,12 +28,10 @@ namespace FundRaiser.Service
 
         public List<ProjectOption> GetProjectsByCategory(Category category);
 
-        public List<ProjectOption> GetProjectsByTextSearch(String textSearch);
+        public List<ProjectOption> GetProjectsByTextSearch(string textSearch);
 
         public List<ProjectOption> GetProjectsTrending();
 
-        public List<ProjectOption> ProjectToProjectOptions(List<Project> projects);
-
-        public List<ProjectOption> GetProjectsByCategoryAndTextSearch(String textSearch, Category category);
+        public List<ProjectOption> GetProjectsByCategoryAndTextSearch(string textSearch, Category category);
     }
 }

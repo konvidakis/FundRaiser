@@ -15,11 +15,18 @@ namespace FundRaiser.Database
         public DbSet<Reward> Rewards { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source = localhost; Initial Catalog = FundRaiser; uid = sa; password=admin!@#123");
-            optionsBuilder.UseSqlServer("Server=tcp:serverfundraiser.database.windows.net,1433;Initial Catalog=FundRaiserDb;Persist Security Info=False;User ID=serveradmin;Password=admin!@#123; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            //for test cases. The Web app takes this from startup with DI
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(
+                    "Data Source = localhost; Initial Catalog = FundRaiser; uid = sa; password=admin!@#123");
+            }
         }
+
+        public FundRaiserDbContext(DbContextOptions<FundRaiserDbContext> options) : base(options) { }
 
     }
 }

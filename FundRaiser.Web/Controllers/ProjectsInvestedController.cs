@@ -35,7 +35,6 @@ namespace FundRaiser.Web.Controllers
                 projectsInvested.Add(projectInvested);
             }
             return View(projectsInvested);
-            //return View(_projectService.GetProjectsInvestedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
         }
     }
 }

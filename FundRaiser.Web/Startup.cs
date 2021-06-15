@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using FundRaiser.Database;
 using FundRaiser.Service;
 using FundRaiser.Service.Implementations;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundRaiser.Web
 {
@@ -27,12 +28,12 @@ namespace FundRaiser.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<IProjectService>(s=> new ProjectService(new FundRaiserDbContext()));
-            services.AddScoped<IRewardService>(r => new RewardService(new FundRaiserDbContext()));
-            services.AddScoped<IProjectPostService>(r => new ProjectPostService(new FundRaiserDbContext()));
-            services.AddScoped<ITransactionService>(r => new TransactionService(new FundRaiserDbContext()));
-            services.AddScoped<IUserService>(r => new UserService(new FundRaiserDbContext()));
-            //services.AddScoped<IProjectService, ProjectService>();
+            services.AddDbContext<FundRaiserDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddScoped<IProjectService,ProjectService>();
+            services.AddScoped<IRewardService,RewardService>();
+            services.AddScoped<IProjectPostService,ProjectPostService>();
+            services.AddScoped<ITransactionService,TransactionService>();
+            services.AddScoped<IUserService,UserService>();
 
             services.AddDistributedMemoryCache();
 

@@ -14,7 +14,6 @@ namespace FundRaiser.Model
             public Reward Reward { get; set; }
             public User User { get; set; }
             public Project Project { get; set; }
-
     }
 }
 

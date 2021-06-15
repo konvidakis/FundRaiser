@@ -45,7 +45,10 @@ namespace FundRaiser.Service.Implementations
 
         public TransactionOption GetTransactionById(int transactionId)
         {
-            Transaction transaction = _db.Transactions.Include(u=>u.User).Include(p=>p.Project).Include(u=>u.Reward).FirstOrDefault(o => o.TransactionId == transactionId);
+            Transaction transaction = _db.Transactions.Include(u=>u.User)
+                .Include(p=>p.Project)
+                .Include(u=>u.Reward)
+                .FirstOrDefault(o => o.TransactionId == transactionId);
             if (transaction == null)
             {
                 return null;

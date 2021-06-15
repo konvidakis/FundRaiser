@@ -8,13 +8,11 @@ namespace FundRaiser.Model
 {
     public enum Category
     {
-        //.... Add Categories
         Art,
         Environment,
         Games,
         Tech,
         Music,
         Other
-
     }
 }

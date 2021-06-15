@@ -25,28 +25,6 @@
         </div>
     </div>
 </form>
-
-
-<!-- old search
-<form asp-action="Index">
-    <p>
-        Search Project by Title: <input type="text" name="searchString" />
-    </p>
-    <p>
-        Select Category
-        <select asp-items="Html.GetEnumSelectList<Category>()" name="category">
-            <option value="">Select category</option>
-        </select>
-    </p>
-    <input type="submit" value="Filter" />
-
-</form>
-
-<form asp-action="ProjectsTrending">
-    <input type="text" name="trending" value="trending" hidden readonly />
-    <input type="submit" value="GetProjectsTrending" />
-</form>
-     -->
 <div class="row justify-content-center">
     @foreach (var item in Model)
 

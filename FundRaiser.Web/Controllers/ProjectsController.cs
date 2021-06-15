@@ -16,7 +16,7 @@ namespace FundRaiser.Web.Controllers
 {
     public class ProjectsController : Controller
     {
-        public IProjectService _projectService;
+        private readonly IProjectService _projectService;
 
         public ProjectsController(IProjectService projectService)
         {
@@ -161,7 +161,7 @@ namespace FundRaiser.Web.Controllers
             return true;
         }*/
 
-        public IActionResult ProjectsCreatedByUser()
+        /*public IActionResult ProjectsCreatedByUser()
         {
             return View(_projectService.GetProjectsCreatedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
         }
@@ -169,18 +169,11 @@ namespace FundRaiser.Web.Controllers
         public IActionResult ProjectsInvestedByUser()
         {
             return View(_projectService.GetProjectsInvestedByUserId(Int32.Parse(HttpContext.Session.GetString("CurrentUser"))));
-        }
-
-        /*public IActionResult ProjectsTrending()
-        {
-            return View(_projectService.GetProjectsTrending());
         }*/
 
 
         public IActionResult Index(String searchString, String category)
         {
-
-            
             if (String.IsNullOrEmpty(searchString)&& String.IsNullOrEmpty(category))
             {
                 return View(_projectService.GetAllProjects());
@@ -200,8 +193,5 @@ namespace FundRaiser.Web.Controllers
             return View(_projectService.GetProjectsByCategoryAndTextSearch(searchString, (Category)Enum.Parse(typeof(Category), category)));
 
         }
-
-
-
     }
 }
